@@ -5,9 +5,9 @@ name: Update, tag and release
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
-    branches: main
-    paths:
-      - REF_DOCKERFILE
+    branches: dev
+    # paths:
+    #   - REF_DOCKERFILE
 
 # Environment variables available to all jobs and steps in this workflow
 env:
