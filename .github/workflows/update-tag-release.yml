@@ -1,0 +1,82 @@
+# Workflow to update all Dockerfiles when a new version of Caddy is available and create a new release and tag
+name: Update, tag and release
+
+# Controls when the action will run
+on:
+  workflow_dispatch:  # allows to run the workflow manually from the Actions tab
+  push:
+    branches: main
+    paths:
+      - REF_DOCKERFILE
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  REF_DOCKERFILE: ./caddy-cloudflare-crowdsec/Dockerfile  # file updated by Dependabot used as reference
+  CADDY_BUILDS: |  # list of all Caddy custom builds
+    caddy-cloudflare-crowdsec
+
+# Jobs to run once the workflow is triggered
+jobs:
+  # Job to parse the Caddy version from the reference Dockerfile
+  metadata:
+    name: Update all Dockerfiles
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Parse Caddy version
+        id: version
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' $REF_DOCKERFILE | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+  
+  # Job to update the Caddy version in all Dockerfiles and create a tag
+  update:
+      name: Bump Caddy version and create tag
+      runs-on: ubuntu-latest
+      needs: metadata
+
+      steps:
+      -  run: |
+          for caddy_build in $CADDY_BUILDS; do
+            sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ steps.version.outputs.version }}/g" ./$caddy_build/Dockerfile
+          done
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Commit, tag and push changes
+        run: |
+          git add ./*/Dockerfile
+          git commit -S -m "Bump Caddy version to v${{ steps.version.outputs.version }} in all Dockerfiles"
+          git tag -fs v${{ steps.version.outputs.version }}-test -m "Bump Caddy version to v${{ steps.version.outputs.version }}"
+          git push
+          git push --tags
+
+  # Job to create a release
+  release:
+    name: Create release
+    runs-on: ubuntu-latest
+    needs: [metadata, update]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Push release to github repository including tag
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ needs.metadata.outputs.version }}-test
+          body: |
+            **Release notes:** https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}

@@ -6,11 +6,11 @@ updates:
     schedule:
       interval: "weekly"
     assignees:
-      - ${{ github.repository_owner }}  # edit to assign a different assignee "username"
+      - "serfriz"
   # Check for Docker image updates
   - package-ecosystem: "docker"
-    directory: "/"
+    directory: "/caddy-cloudflare-crowdsec"
     schedule:
       interval: "daily"
     assignees:
-      - ${{ github.repository_owner }}  # edit to assign a different assignee "username"
+      - "serfriz"

@@ -5,11 +5,10 @@ name: Build and publish
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
-    branches: main
-    paths:
-      - Dockerfile
+    tags:
+      - "*"  # triggers workflow when a new tag is pushed to the repository.
 
-# Environment variables
+# Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
 
@@ -31,6 +30,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: dev
 
       - name: Generate docker-compliant image name
         id: name
@@ -68,6 +69,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          ref: dev
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -105,20 +108,3 @@ jobs:
           tags: ${{ needs.metadata.outputs.tags }}
           labels: ${{ needs.metadata.outputs.labels }}
           platforms: ${{ needs.metadata.outputs.platforms }}
-
-  # Job to create a release and a version tag
-  release:
-    name: Create release and version tag
-    runs-on: ubuntu-latest
-    needs: metadata
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Push release to github repository including tag
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: v${{ needs.metadata.outputs.version }}
-          body: |
-            **Release notes:** https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}

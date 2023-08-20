@@ -1,2 +1,2 @@
-# caddy-cloudflare-crowdsec
-Caddy Docker custom build with Cloudflare DNS and CrowdSec Bouncer
+# caddy-custom-dockers
+Caddy Docker custom builds with different combinations of modules
