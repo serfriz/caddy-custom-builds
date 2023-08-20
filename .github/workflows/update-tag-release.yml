@@ -42,6 +42,11 @@ jobs:
       needs: metadata
 
       steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
       -  run: |
           for caddy_build in $CADDY_BUILDS; do
             sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ steps.version.outputs.version }}/g" ./$caddy_build/Dockerfile
