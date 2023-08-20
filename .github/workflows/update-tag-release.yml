@@ -6,8 +6,8 @@ on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
     branches: dev
-    # paths:
-    #   - REF_DOCKERFILE
+    paths:
+      - REF_DOCKERFILE
 
 # Environment variables available to all jobs and steps in this workflow
 env:
@@ -49,7 +49,7 @@ jobs:
 
       -  run: |
           for caddy_build in $CADDY_BUILDS; do
-            sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ steps.version.outputs.version }}/g" ./$caddy_build/Dockerfile
+            sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ needs.metadata.outputs.version }}/g" ./$caddy_build/Dockerfile
           done
 
       - name: Import GPG key
@@ -62,8 +62,8 @@ jobs:
       - name: Commit, tag and push changes
         run: |
           git add ./*/Dockerfile
-          git commit -S -m "Bump Caddy version to v${{ steps.version.outputs.version }} in all Dockerfiles"
-          git tag -fs v${{ steps.version.outputs.version }}-test -m "Bump Caddy version to v${{ steps.version.outputs.version }}"
+          git commit -S -m "Bump Caddy version to v${{ needs.metadata.outputs.version }} in all Dockerfiles"
+          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Bump Caddy version to v${{ needs.metadata.outputs.version }}"
           git push
           git push --tags
 
