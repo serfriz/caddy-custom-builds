@@ -58,14 +58,20 @@ jobs:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           git_user_signingkey: true
           git_commit_gpgsign: true
+          git_tag_gpgsign: true
 
       - name: Commit, tag and push changes
         run: |
           git add ./*/Dockerfile
-          git commit -S -m "Bump Caddy version to v${{ needs.metadata.outputs.version }} in all Dockerfiles"
+          if [ "$(git diff HEAD)" ]
+          then
+            git commit -Sm "Bump Caddy version to v${{ needs.metadata.outputs.version }} in all Dockerfiles"
+            git push
+          else
+            echo "No changes detected"
+          fi
           git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Bump Caddy version to v${{ needs.metadata.outputs.version }}"
-          git push
-          git push --tags
+          git push --tags -f
 
   # Job to create a release
   release:
