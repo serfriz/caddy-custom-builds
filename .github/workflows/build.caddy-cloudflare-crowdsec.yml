@@ -35,7 +35,7 @@ jobs:
 
       - name: Parse Caddy version
         id: version
-        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' ./$BUILD_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' ./$DOCKER_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
 
       - name: Generate image metadata with Caddy version
         uses: docker/metadata-action@v4
@@ -95,7 +95,7 @@ jobs:
         uses: docker/build-push-action@v4
         id: build
         with:
-          context: ./$BUILD_NAME
+          context: ./$DOCKER_NAME
           push: true
           provenance: false
           tags: ${{ needs.metadata.outputs.tags }}
