@@ -36,7 +36,7 @@ jobs:
   
   # Job to update the Caddy version in all Dockerfiles and create a tag
   update:
-      name: Update Caddy version and create tag
+      name: Update Caddy and create tag
       runs-on: ubuntu-latest
       needs: metadata
 
@@ -61,7 +61,7 @@ jobs:
           git_commit_gpgsign: true
           git_tag_gpgsign: true
 
-      - name: Commit, tag and push changes
+      - name: Commit push changes
         run: |
           git add ./*/Dockerfile
           if [ "$(git diff HEAD)" ]
@@ -71,7 +71,10 @@ jobs:
           else
             echo "No changes detected"
           fi
-          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Bump Caddy version to v${{ needs.metadata.outputs.version }}"
+        
+      - name: Create and push tag
+        run: |
+          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Docker builds with Caddy v${{ needs.metadata.outputs.version }}"
           git push --tags -f
 
   # Job to create a release
