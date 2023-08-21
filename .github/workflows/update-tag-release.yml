@@ -11,7 +11,7 @@ on:
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  DOCKER_NAMES: |  # list of all Caddy Docker custom builds
+  CADDY_BUILDS: |  # list of all Caddy Docker custom builds
     caddy-cloudflare-crowdsec
 
 # Jobs to run once the workflow is triggered
@@ -49,7 +49,7 @@ jobs:
 
       - name: Replace Caddy version in all Dockerfiles
         run: |
-          for caddy_build in $CONTAINER_NAMES; do
+          for caddy_build in $CADDY_BUILDS; do
             sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ needs.metadata.outputs.version }}/g" ./$caddy_build/Dockerfile
           done
 
@@ -74,7 +74,7 @@ jobs:
         
       - name: Create and push tag
         run: |
-          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Docker builds with Caddy v${{ needs.metadata.outputs.version }}"
+          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Docker images built with Caddy v${{ needs.metadata.outputs.version }}"
           git push --tags -f
 
   # Job to create a release
@@ -89,9 +89,23 @@ jobs:
         with:
           ref: dev
 
+      - name: Generate release text
+        id: text
+        run: |
+          echo "RELEASE_TEXT<<EOF" >> $GITHUB_ENV
+          for caddy_build in $CADDY_BUILDS; do
+            echo "- $caddy_build: [Source](https://github.com/serfriz/caddy-cloudflare-crowdsec/tree/main/$caddy_build) / \
+            [GitHub Package](https://ghcr.io/serfriz/$caddy_build) / [Docker Hub](https://hub.docker.com/r/serfriz/$caddy_build) / \
+            [Quay Package](https://quay.io/serfriz/$caddy_build)" >> $GITHUB_ENV
+          done
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Push release to github repository including tag
         uses: softprops/action-gh-release@v1
         with:
           tag_name: v${{ needs.metadata.outputs.version }}-test
           body: |
-            **Release notes:** https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}
+            Release notes: https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}
+
+            Caddy custom builds:
+            ${{ env.RELEASE_TEXT }}
