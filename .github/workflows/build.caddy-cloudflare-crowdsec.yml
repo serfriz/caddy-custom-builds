@@ -96,7 +96,7 @@ jobs:
         id: build
         with:
           context: .
-          file: ./$DOCKER_NAME/Dockerfile
+          file: ./${{ env.DOCKER_NAME }}/Dockerfile
           push: true
           provenance: false
           tags: ${{ needs.metadata.outputs.tags }}
