@@ -44,7 +44,7 @@ jobs:
           images: |
             docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_NAME }}-test
             ghcr.io/${{ github.actor }}/${{ env.DOCKER_NAME }}-test
-          #  quay.io/${{ secrets.QUAY_USERNAME }}/${{ env.DOCKER_NAME }}-test
+            quay.io/${{ secrets.QUAY_USERNAME }}/${{ env.DOCKER_NAME }}-test
           tags: |
             type=semver,pattern={{version}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.version }}
@@ -95,7 +95,8 @@ jobs:
         uses: docker/build-push-action@v4
         id: build
         with:
-          context: ./$DOCKER_NAME
+          context: .
+          file: ./$DOCKER_NAME/Dockerfile
           push: true
           provenance: false
           tags: ${{ needs.metadata.outputs.tags }}
