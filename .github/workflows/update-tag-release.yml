@@ -1,5 +1,5 @@
 # Workflow to update all Dockerfiles when a new version of Caddy is available and create a new release and tag
-name: Update, tag and release
+name: Update, create tag and release
 
 # Controls when the action will run
 on:
@@ -12,7 +12,7 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   REF_DOCKERFILE: ./caddy-cloudflare-crowdsec/Dockerfile  # file updated by Dependabot used as reference
-  CADDY_BUILDS: |  # list of all Caddy custom builds
+  DOCKER_NAMES: |  # list of all Caddy Docker custom builds
     caddy-cloudflare-crowdsec
 
 # Jobs to run once the workflow is triggered
@@ -37,7 +37,7 @@ jobs:
   
   # Job to update the Caddy version in all Dockerfiles and create a tag
   update:
-      name: Bump Caddy version and create tag
+      name: Update version and create tag
       runs-on: ubuntu-latest
       needs: metadata
 
@@ -47,8 +47,9 @@ jobs:
         with:
           ref: dev
 
-      -  run: |
-          for caddy_build in $CADDY_BUILDS; do
+      - name: Replace Caddy version in all Dockerfiles
+        run: |
+          for caddy_build in $CONTAINER_NAMES; do
             sed -i "s/caddy:[0-9]\+\.[0-9]\+\.[0-9]\+/caddy:${{ needs.metadata.outputs.version }}/g" ./$caddy_build/Dockerfile
           done
 

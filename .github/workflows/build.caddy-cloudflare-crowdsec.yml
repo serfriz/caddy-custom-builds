@@ -6,11 +6,13 @@ on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
     tags:
-      - "*"  # triggers workflow when a new tag is pushed to the repository.
+      - '*'  # triggers workflow when a new tag is pushed to the repository.
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
+  DOCKER_NAME: caddy-clouflare-crowdsec
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare DNS and CrowdSec Bouncer modules"
 
 # Jobs to run once the workflow is triggered
 jobs:
@@ -20,12 +22,10 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      name: ${{ steps.name.outputs.name }}
-      title: ${{ steps.title.outputs.title }}
       version: ${{ steps.version.outputs.version }}
       labels: ${{ steps.metadata.outputs.labels }}
       tags: ${{ steps.metadata.outputs.tags }}
-      platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6
+      platforms: linux/amd64  # ,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
 
     steps:
       - name: Checkout repository
@@ -33,32 +33,25 @@ jobs:
         with:
           ref: dev
 
-      - name: Generate docker-compliant image name
-        id: name
-        run: echo "name=$(echo ${GITHUB_REPOSITORY,,})" | tee -a $GITHUB_OUTPUT
-
-      - name: Generate OCI image title
-        id: title
-        run: echo "title=$(echo ${GITHUB_REPOSITORY#*/})" | tee -a $GITHUB_OUTPUT
-
       - name: Parse Caddy version
         id: version
-        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' ./$BUILD_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
 
       - name: Generate image metadata with Caddy version
         uses: docker/metadata-action@v4
         id: metadata
         with:
           images: |
-            docker.io/${{ steps.name.outputs.name }}
-            ghcr.io/${{ steps.name.outputs.name }}
-            quay.io/${{ steps.name.outputs.name }}
+            docker.io/${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_NAME }}-test
+            ghcr.io/${{ github.actor }}/${{ env.DOCKER_NAME }}-test
+          #  quay.io/${{ secrets.QUAY_USERNAME }}/${{ env.DOCKER_NAME }}-test
           tags: |
             type=semver,pattern={{version}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}},value=v${{ steps.version.outputs.version }}
           labels: |
-            org.opencontainers.image.title=${{ steps.title.outputs.title }}
+            org.opencontainers.image.title=${{ env.DOCKER_NAME }}
+            org.opencontainers.image.description=${{ env.DOCKER_DESCRIPTION }}
 
   # Job to build and publish Docker image
   build:
@@ -95,14 +88,14 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: quay.io
-          username: ${{ secrets.QUAY_ROBOTNAME }}
+          username: ${{ secrets.QUAY_USERNAME }}+pushbot
           password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Build and publish container image
         uses: docker/build-push-action@v4
         id: build
         with:
-          context: .
+          context: ./$BUILD_NAME
           push: true
           provenance: false
           tags: ${{ needs.metadata.outputs.tags }}
