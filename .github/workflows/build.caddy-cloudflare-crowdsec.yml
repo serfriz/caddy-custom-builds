@@ -11,7 +11,7 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
-  DOCKER_NAME: caddy-clouflare-crowdsec
+  DOCKER_NAME: caddy-cloudflare-crowdsec
   DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare DNS and CrowdSec Bouncer modules"
 
 # Jobs to run once the workflow is triggered
