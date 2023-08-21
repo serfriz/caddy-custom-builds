@@ -7,11 +7,10 @@ on:
   push:
     branches: dev
     paths:
-      - REF_DOCKERFILE
+      - caddy-cloudflare-crowdsec/Dockerfile  # file updated by Dependabot used as reference
 
 # Environment variables available to all jobs and steps in this workflow
 env:
-  REF_DOCKERFILE: ./caddy-cloudflare-crowdsec/Dockerfile  # file updated by Dependabot used as reference
   DOCKER_NAMES: |  # list of all Caddy Docker custom builds
     caddy-cloudflare-crowdsec
 
@@ -33,7 +32,7 @@ jobs:
 
       - name: Parse Caddy version
         id: version
-        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' $REF_DOCKERFILE | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' caddy-cloudflare-crowdsec/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
   
   # Job to update the Caddy version in all Dockerfiles and create a tag
   update:
