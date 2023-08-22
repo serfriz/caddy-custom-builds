@@ -93,7 +93,7 @@ jobs:
         run: |
           echo "RELEASE_TEXT<<EOF" >> $GITHUB_ENV
           for caddy_build in $CADDY_BUILDS; do
-            echo "- $caddy_build: [Source](https://github.com/serfriz/caddy-cloudflare-crowdsec/tree/main/$caddy_build) / \
+            echo "- $caddy_build: [Source](https://github.com/serfriz/caddy-custom-builds/tree/main/$caddy_build) / \
             [GitHub Package](https://ghcr.io/serfriz/$caddy_build) / [Docker Hub](https://hub.docker.com/r/serfriz/$caddy_build) / \
             [Quay Package](https://quay.io/serfriz/$caddy_build)" >> $GITHUB_ENV
           done
