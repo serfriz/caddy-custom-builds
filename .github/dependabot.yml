@@ -9,7 +9,7 @@ updates:
       - "serfriz"
   # Check for Docker image updates
   - package-ecosystem: "docker"
-    directory: "/caddy-cloudflare-crowdsec"
+    directory: "/caddy-cloudflare"
     schedule:
       interval: "daily"
     assignees:
