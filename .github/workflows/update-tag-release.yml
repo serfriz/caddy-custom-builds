@@ -1,5 +1,5 @@
 # Workflow to update all Dockerfiles when a new version of Caddy is available and create a new release and tag
-name: Update all, tag and release
+name: Update Dockerfiles, tag and release
 
 # Controls when the action will run
 on:
