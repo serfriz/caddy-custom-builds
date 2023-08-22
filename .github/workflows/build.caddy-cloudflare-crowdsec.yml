@@ -1,12 +1,13 @@
 # Workflow to build and push a Docker image to Docker Hub, GitHub and Quay Container Registries
-name: Build and publish
+name: Build caddy-cloudflare-crowdsec
 
 # Controls when the action will run
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
-    tags:
-      - '*'  # triggers workflow when a new tag is pushed to the repository.
+    branches: main
+    paths:
+      - caddy-cloudflare-crowdsec/Dockerfile
 
 # Environment variables available to all jobs and steps in this workflow
 env:
@@ -25,26 +26,26 @@ jobs:
       version: ${{ steps.version.outputs.version }}
       labels: ${{ steps.metadata.outputs.labels }}
       tags: ${{ steps.metadata.outputs.tags }}
-      platforms: linux/amd64  # ,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
+      platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: main
 
       - name: Parse Caddy version
         id: version
-        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' ./$DOCKER_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' $DOCKER_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
 
       - name: Generate image metadata with Caddy version
         uses: docker/metadata-action@v4
         id: metadata
         with:
           images: |
-            docker.io/${{ github.actor }}/${{ env.DOCKER_NAME }}-test
-            ghcr.io/${{ github.actor }}/${{ env.DOCKER_NAME }}-test
-            quay.io/${{ github.actor }}/${{ env.DOCKER_NAME }}-test
+            docker.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
+            ghcr.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
+            quay.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
           tags: |
             type=semver,pattern={{version}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.version }}
@@ -63,7 +64,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: main
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2

@@ -1,2 +1,2 @@
-# caddy-custom-dockers
-Caddy Docker custom builds with different combinations of modules
+# caddy-custom-builds
+Caddy Docker custom images built with various combinations of modules

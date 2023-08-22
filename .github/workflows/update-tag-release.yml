@@ -1,11 +1,11 @@
 # Workflow to update all Dockerfiles when a new version of Caddy is available and create a new release and tag
-name: Update, create tag and release
+name: Update all, tag and release
 
 # Controls when the action will run
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
   push:
-    branches: dev
+    branches: main
     paths:
       - caddy-cloudflare-crowdsec/Dockerfile  # file updated by Dependabot used as reference
 
@@ -18,7 +18,7 @@ env:
 jobs:
   # Job to parse the Caddy version from the reference Dockerfile
   metadata:
-    name: Update all Dockerfiles
+    name: Get updated Caddy version
     runs-on: ubuntu-latest
 
     outputs:
@@ -28,7 +28,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: main
 
       - name: Parse Caddy version
         id: version
@@ -45,7 +45,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
-          ref: dev
+          ref: main
 
       - name: Replace Caddy version in all Dockerfiles
         run: |
@@ -61,7 +61,7 @@ jobs:
           git_commit_gpgsign: true
           git_tag_gpgsign: true
 
-      - name: Commit push changes
+      - name: Commit and push changes
         run: |
           git add ./*/Dockerfile
           if [ "$(git diff HEAD)" ]
@@ -74,7 +74,7 @@ jobs:
         
       - name: Create and push tag
         run: |
-          git tag -fs v${{ needs.metadata.outputs.version }}-test -m "Docker images built with Caddy v${{ needs.metadata.outputs.version }}"
+          git tag -fs v${{ needs.metadata.outputs.version }} -m "Docker images built with Caddy v${{ needs.metadata.outputs.version }}"
           git push --tags -f
 
   # Job to create a release
@@ -87,10 +87,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: main
 
       - name: Generate release text
-        id: text
         run: |
           echo "RELEASE_TEXT<<EOF" >> $GITHUB_ENV
           for caddy_build in $CADDY_BUILDS; do
@@ -100,12 +99,12 @@ jobs:
           done
           echo "EOF" >> $GITHUB_ENV
 
-      - name: Push release to github repository including tag
+      - name: Push release to github repository
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: v${{ needs.metadata.outputs.version }}-test
+          tag_name: v${{ needs.metadata.outputs.version }}
           body: |
-            Release notes: https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}
+            Caddy release notes: https://github.com/caddyserver/caddy/releases/tag/v${{ needs.metadata.outputs.version }}
 
-            Caddy custom builds:
+            Custom builds:
             ${{ env.RELEASE_TEXT }}
