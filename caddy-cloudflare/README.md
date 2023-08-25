@@ -46,7 +46,7 @@ Then set the global [acme_dns](https://caddyserver.com/docs/caddyfile/options#ac
 
 ```Caddyfile
 tls {
-	dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+  dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 ```
 In addition, to restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
