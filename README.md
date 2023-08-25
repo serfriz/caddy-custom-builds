@@ -5,7 +5,7 @@
 
 This repository aims to provide flexibility and convenience to run [Caddy](https://github.com/caddyserver/caddy) with specific combinations of modules according to users' needs and preferences. All images are built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image.
 
-If you are looking for a specific Caddy Docker custom build not available in the latest [Release](https://github.com/serfriz/caddy-custom-builds/releases), please create a new [Issue](https://github.com/serfriz/caddy-custom-builds/issues) with your request. 
+If you are looking for a specific custom build not available yet in this repository, please create a new [Issue](https://github.com/serfriz/caddy-custom-builds/issues) with your request. 
 
 ## Build with Cloudflare DNS and IP modules
 
