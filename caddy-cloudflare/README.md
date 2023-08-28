@@ -10,7 +10,7 @@
 
 This image is built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image with the following modules:
 - [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current IP ranges.
+- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current IP ranges [IP ranges](https://www.cloudflare.com/ips/)..
 
 Docker builds for all supported platforms available at the following repositories:
 - [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare) `docker pull serfriz/caddy-cloudflare:latest`
@@ -28,6 +28,8 @@ The following tags are available for the `serfriz/caddy-cloudflare` image.
 
 Since this is built off the official Docker image all of the same volumes, port mapping, environment variables, etc. can be used with this container. Please refer to the official [Caddy Docker](https://hub.docker.com/_/caddy) image and [docs](https://caddyserver.com/docs/) for more information on using Caddy.
 
+### Create the Docker container
+
 Simply create the container as usual including your `CLOUDFLARE_API_TOKEN` as [environment variable](https://caddyserver.com/docs/caddyfile/concepts#environment-variables).
 
 ```sh
@@ -35,31 +37,34 @@ docker run --rm -it \
   --name caddy \
   -p 80:80 \
   -p 443:443 \
-  -v caddy_data:/data \
-  -v caddy_config:/config \
+  -v caddy-data:/data \
+  -v caddy-config:/config \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
   -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
   serfriz/caddy-cloudflare:latest
 ```
 
-Then set the global [acme_dns](https://caddyserver.com/docs/caddyfile/options#acme-dns) directive in your `Caddyfile`. See the [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module and [`tls`](https://caddyserver.com/docs/caddyfile/directives/tls#tls) directive for advanced usage.
+### Cloudflare DNS-01 ACME validation
 
-```Caddyfile
-tls {
-  dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-}
-```
-In addition, to restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
+To make use of the Cloudflare DNS-01 ACME validation support at the server level, set the global [acme_dns](https://caddyserver.com/docs/caddyfile/options#acme-dns) directive in your `Caddyfile`.
 
 ```Caddyfile
 {
-  trusted_proxies cloudflare {
-    interval 12h
-    timeout 15s
+  acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
 }
 ```
 
-### Creating a Cloudflare API Token
+Or use the [`tls`](https://caddyserver.com/docs/caddyfile/directives/tls#tls) directive at each site. See the [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module for additional details.
+
+```Caddyfile
+my.domain.tld {
+  tls {
+    dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+  }
+}
+```
+
+#### Creating a Cloudflare API Token
 
 You can generate a Cloudflare API token via the Cloudflare web dashboard through the following steps:
 
@@ -69,6 +74,21 @@ You can generate a Cloudflare API token via the Cloudflare web dashboard through
 4. Grant the following permissions:
    - `Zone > Zone > Read`
    - `Zone > DNS > Edit`
+
+### Cloudflare IP ranges
+
+To restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to the global options, under servers, in your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
+
+```Caddyfile
+{
+  servers {
+    trusted_proxies cloudflare {
+      interval 12h
+      timeout 15s
+    }
+  }
+}
+```
 
 ## Contributing
 
