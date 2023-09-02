@@ -44,6 +44,23 @@ Docker builds for all supported platforms available at the following repositorie
 
 Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec) file.
 
+## Build with CrowdSec Bouncer module
+
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-crowdsec)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-crowdsec)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-crowdsec)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-crowdsec.yml)
+
+Caddy Docker custom build with the following module:
+- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+
+Docker builds for all supported platforms available at the following repositories:
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-crowdsec) `docker pull serfriz/caddy-crowdsec:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-crowdsec) `docker pull ghcr.io/serfriz/caddy-crowdsec:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-crowdsec) `docker pull quay.io/serfriz/caddy-crowdsec:latest`
+
+Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec) file.
+
 ## Contributing
 
 Feel free to contribute, request additional Caddy custom builds with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
