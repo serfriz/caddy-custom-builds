@@ -44,7 +44,7 @@ docker run --rm -it \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
   -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
   -e CROWDSEC_API_KEY=UhKLc...JD9jk \
-  serfriz/caddy-cloudflare:latest
+  serfriz/caddy-cloudflare-crowdsec:latest
 ```
 
 ### Cloudflare DNS-01 ACME validation
@@ -119,7 +119,7 @@ my.domain.tld {
 
 #### Creating a CrowdSec API Key
 
-To register the Caddy CrowdSec Bouncer to your API, you need to run the command below on the server where the CrowdSec API is installed, and use the generated API token when creating the Caddy Docker container.
+To register the Caddy CrowdSec Bouncer to your API, you need to run the command below on the server where the CrowdSec API is installed, and use the generated API key when creating the Caddy Docker container.
 
 ```sh
 sudo cscli bouncers add caddy-bouncer
