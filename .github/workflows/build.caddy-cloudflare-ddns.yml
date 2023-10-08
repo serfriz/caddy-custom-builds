@@ -1,5 +1,5 @@
 # Workflow to build and push a Docker image to Docker Hub, GitHub and Quay Container Registries
-name: Build caddy-cloudflare-dynamicdns
+name: Build caddy-cloudflare-ddns
 
 # Controls when the action will run
 on:
@@ -7,12 +7,12 @@ on:
   push:
     branches: main
     paths:
-      - caddy-cloudflare-dynamicdns/Dockerfile
+      - caddy-cloudflare-ddns/Dockerfile
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
-  DOCKER_NAME: caddy-cloudflare-dynamicdns
+  DOCKER_NAME: caddy-cloudflare-ddns
   DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare dynamic DNS/IPs modules"
 
 # Jobs to run once the workflow is triggered

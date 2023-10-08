@@ -1,11 +1,11 @@
 # Caddy Docker build with Cloudflare dynamic DNS and IP modules
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-dynamicdns)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-ddns)
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-dynamicdns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-dynamicdns.yml)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns.yml)
 [![License](https://img.shields.io/github/license/serfriz/caddy-custom-builds?label=License)](https://github.com/serfriz/caddy-custom-builds/blob/main/LICENSE)
 
 This image is built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image with the following modules:
@@ -14,13 +14,13 @@ This image is built automatically when a new version of [Caddy](https://github.c
 - [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
 
 Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns) `docker pull serfriz/caddy-cloudflare-dynamicdns:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull ghcr.io/serfriz/caddy-cloudflare-dynamicdns:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull quay.io/serfriz/caddy-cloudflare-dynamicdns:latest`
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns) `docker pull serfriz/caddy-cloudflare-ddns:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns) `docker pull quay.io/serfriz/caddy-cloudflare-ddns:latest`
 
 ## Tags
 
-The following tags are available for the `serfriz/caddy-cloudflare-dynamicdns` image.
+The following tags are available for the `serfriz/caddy-cloudflare-ddns` image.
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
@@ -42,7 +42,7 @@ docker run --rm -it \
   -v caddy-config:/config \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
   -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
-  serfriz/caddy-cloudflare-dynamicdns:latest
+  serfriz/caddy-cloudflare-ddns:latest
 ```
 
 ### Cloudflare DNS-01 ACME validation
