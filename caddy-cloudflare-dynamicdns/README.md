@@ -1,25 +1,26 @@
-# Caddy Docker build with Cloudflare DNS and IP modules
+# Caddy Docker build with Cloudflare dynamic DNS and IP modules
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-dynamicdns)
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare.yml)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-dynamicdns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-dynamicdns.yml)
 [![License](https://img.shields.io/github/license/serfriz/caddy-custom-builds?label=License)](https://github.com/serfriz/caddy-custom-builds/blob/main/LICENSE)
 
 This image is built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image with the following modules:
 - [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
 - [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
+- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
 
 Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare) `docker pull serfriz/caddy-cloudflare:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare) `docker pull ghcr.io/serfriz/caddy-cloudflare:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare) `docker pull quay.io/serfriz/caddy-cloudflare:latest`
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns) `docker pull serfriz/caddy-cloudflare-dynamicdns:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull ghcr.io/serfriz/caddy-cloudflare-dynamicdns:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull quay.io/serfriz/caddy-cloudflare-dynamicdns:latest`
 
 ## Tags
 
-The following tags are available for the `serfriz/caddy-cloudflare` image.
+The following tags are available for the `serfriz/caddy-cloudflare-dynamicdns` image.
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
@@ -41,7 +42,7 @@ docker run --rm -it \
   -v caddy-config:/config \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
   -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
-  serfriz/caddy-cloudflare:latest
+  serfriz/caddy-cloudflare-dynamicdns:latest
 ```
 
 ### Cloudflare DNS-01 ACME validation
@@ -77,7 +78,7 @@ You can generate a Cloudflare API token via the Cloudflare web dashboard through
 
 ### Cloudflare IP ranges
 
-To restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to the global options, under servers, in your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
+To restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to the [global options](https://caddyserver.com/docs/caddyfile/options), under servers, in your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
 
 ```Caddyfile
 {
@@ -89,6 +90,23 @@ To restrict access to your server only to Cloudflare's IP ranges, add the [trust
   }
 }
 ```
+
+### Dynamic DNS
+
+To keep your Cloudflare DNS records updated with the public IP address of your instance, add the [dynamic_dns](https://caddyserver.com/docs/modules/dynamic_dns) directive to the [global options](https://caddyserver.com/docs/caddyfile/options) in your `Caddyfile`. This module regularly queries a service for your public IP address and updates the DNS records via Cloudflare's API whenever it changes. For additional details and advanced configuration examples refer to [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns) repository.
+
+```Caddyfile
+{
+	dynamic_dns {
+		provider cloudflare {env.CLOUDFLARE_API_TOKEN}
+		domains {
+			domain.tld
+		}
+	}
+}
+```
+
+Using the option [dynamic_domains](https://github.com/mholt/caddy-dynamicdns#dynamic-domains), it can also be configured to scan through the domains configured in the Caddyfile and try to manage those DNS records.
 
 ## Contributing
 

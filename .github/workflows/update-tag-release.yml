@@ -13,6 +13,7 @@ on:
 env:
   CADDY_BUILDS: |  # list of all Caddy Docker custom builds
     caddy-cloudflare
+    caddy-cloudflare-dynamicdns
     caddy-cloudflare-crowdsec
     caddy-crowdsec
 

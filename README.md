@@ -25,6 +25,25 @@ Docker builds for all supported platforms available at the following repositorie
 
 Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare) file.
 
+## Build with Cloudflare dynamic DNS and IP modules
+
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--dynamicdns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-dynamicdns)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-dynamicdns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-dynamicdns.yml)
+
+Caddy Docker custom build with the following modules:
+- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
+- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
+- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
+
+Docker builds for all supported platforms available at the following repositories:
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-dynamicdns) `docker pull serfriz/caddy-cloudflare-dynamicdns:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull ghcr.io/serfriz/caddy-cloudflare-dynamicdns:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-dynamicdns) `docker pull quay.io/serfriz/caddy-cloudflare-dynamicdns:latest`
+
+Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-dynamicdns) file.
+
 ## Build with Cloudflare DNS/IP and CrowdSec Bouncer modules
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-crowdsec)
