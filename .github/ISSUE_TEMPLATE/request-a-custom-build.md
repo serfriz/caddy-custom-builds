@@ -1,6 +1,6 @@
 ---
-name: Caddy custom build request
-about: Request additional Caddy modules
+name: Request a custom build
+about: Ask for additional Caddy modules
 title: ''
 labels: enhancement
 assignees: serfriz
