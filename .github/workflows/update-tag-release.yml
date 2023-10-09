@@ -18,6 +18,7 @@ env:
     caddy-cloudflare-ddns-crowdsec
     caddy-duckdns
     caddy-duckdns-ddns
+    caddy-duckdns-crowdsec
     caddy-crowdsec
 
 # Jobs to run once the workflow is triggered
