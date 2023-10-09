@@ -136,6 +136,25 @@ Docker builds for all supported platforms available at the following repositorie
 
 Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec) file.
 
+## Build with DuckDNS dynamic DNS and CrowdSec Bouncer modules
+
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns-crowdsec)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-duckdns-ddns-crowdsec)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-duckdns-ddns-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-duckdns-ddns-crowdsec.yml)
+
+Caddy Docker custom build with the following modules:
+- [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns) for DuckDNS DNS-01 ACME validation support.
+- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
+- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+
+Docker builds for all supported platforms available at the following repositories:
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull serfriz/caddy-duckdns-ddns-crowdsec:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull quay.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
+
+Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec) file.
+
 ## Build with CrowdSec Bouncer module
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-crowdsec)
