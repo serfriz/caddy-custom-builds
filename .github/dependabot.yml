@@ -1,0 +1,16 @@
+version: 2
+updates:
+  # Maintain dependencies for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    assignees:
+      - "serfriz"
+  # Check for Docker image updates
+  - package-ecosystem: "docker"
+    directory: "/caddy-cloudflare"
+    schedule:
+      interval: "daily"
+    assignees:
+      - "serfriz"
