@@ -74,7 +74,7 @@ jobs:
           git add ./*/Dockerfile
           if [ "$(git diff HEAD)" ]
           then
-            git commit -Sm "Bump Caddy version to v${{ needs.metadata.outputs.version }} in all Dockerfiles"
+            git commit -S -m "Bump Caddy version to v${{ needs.metadata.outputs.version }} in all Dockerfiles"
             git push
           else
             echo "No changes detected"
