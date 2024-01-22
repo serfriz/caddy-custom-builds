@@ -1,27 +1,27 @@
-# Caddy Docker build with Cloudflare dynamic DNS/IPs and CrowdSec Bouncer modules
+# Caddy Docker build with Cloudflare dynamic DNS/IPs and Caddy Security modules
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-ddns-crowdsec)
+[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns--security%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-security)
+[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns--security%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns-security)
+[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--ddns--security%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-ddns-security)
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns-crowdsec.yml)
+[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns-security.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns-security.yml)
 [![License](https://img.shields.io/github/license/serfriz/caddy-custom-builds?label=License)](https://github.com/serfriz/caddy-custom-builds/blob/main/LICENSE)
 
 This image is built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image with the following modules:
 - [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
 - [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
 - [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+- [greenpau/caddy-security](https://github.com/greenpau/caddy-security) for implementing different authentication methods (Form-Based, Basic, Local, LDAP, OpenID Connect, OAuth 2.0, SAML) including MFA/2FA support.
 
 Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull serfriz/caddy-cloudflare-ddns-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull quay.io/serfriz/caddy-cloudflare-ddns-crowdsec:latest`
+- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-security) `docker pull serfriz/caddy-cloudflare-ddns-security:latest`
+- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns-security) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns-security:latest`
+- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns-security) `docker pull quay.io/serfriz/caddy-cloudflare-ddns-security:latest`
 
 ## Tags
 
-The following tags are available for the `serfriz/caddy-cloudflare-ddns-crowdsec` image.
+The following tags are available for the `serfriz/caddy-cloudflare-ddns-security` image.
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
@@ -32,7 +32,7 @@ Since this is built off the official Docker image all of the same volumes, port 
 
 ### Create the Docker container
 
-Simply create the container as usual including your `CLOUDFLARE_API_TOKEN` and `CROWDSEC_API_KEY` as [environment variables](https://caddyserver.com/docs/caddyfile/concepts#environment-variables).
+Simply create the container as usual including your `CLOUDFLARE_API_TOKEN` as [environment variable](https://caddyserver.com/docs/caddyfile/concepts#environment-variables).
 
 ```sh
 docker run --rm -it \
@@ -41,11 +41,9 @@ docker run --rm -it \
   -p 443:443 \
   -v caddy-data:/data \
   -v caddy-config:/config \
-  -v caddy-logs:/var/log/caddy \
   -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
   -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
-  -e CROWDSEC_API_KEY=UhKLc...JD9jk \
-  serfriz/caddy-cloudflare-crowdsec:latest
+  serfriz/caddy-cloudflare-ddns-security:latest
 ```
 
 ### Cloudflare DNS-01 ACME validation
@@ -111,39 +109,9 @@ To keep your Cloudflare DNS records updated with the public IP address of your i
 
 Using the option [dynamic_domains](https://github.com/mholt/caddy-dynamicdns#dynamic-domains), it can also be configured to scan through the domains configured in the Caddyfile and try to manage those DNS records.
 
-### CrowdSec Bouncer
+### Caddy Security
 
-[CrowdSec](https://www.crowdsec.net/) is a free and open source security automation tool that uses local logs and a set of scenarios to infer malicious intent. In addition to operating locally, an optional community integration is also available, through which crowd-sourced IP reputation lists are distributed.
-
-To make use of the CrowdSec Bouncer module, set the global [crowdsec](https://caddyserver.com/docs/modules/crowdsec) directive in your `Caddyfile`, and include it at each site you want to protect. For advanced usage, refer to the [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) repository.
-
-```Caddyfile
-{
-  debug  # optional, makes Caddy logs more detailed
-  order crowdsec first  # CrowdSec directive must be executed first
-  crowdsec {
-    api_url http://localhost:8080
-    api_key {env.CROWDSEC_API_KEY}
-  }
-}
-
-my.domain.tld {
-  crowdsec
-  log {
-    output file /var/log/caddy/access.log
-  }
-}
-```
-
-#### Creating a CrowdSec API Key
-
-To register the Caddy CrowdSec Bouncer to your API, you need to run the command below on the server where the CrowdSec API is installed, and use the generated API key when creating the Caddy Docker container.
-
-```sh
-sudo cscli bouncers add caddy-bouncer
-```
-
-For additional details, refer to the [CrowdSec documentation](https://www.crowdsec.net/blog/introduction-to-the-local-api).
+Please, refer to the official [greenpau/caddy-security](https://authp.github.io/) documentation for additional details and configuration examples.
 
 ## Contributing
 

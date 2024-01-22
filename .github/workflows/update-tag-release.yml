@@ -16,6 +16,7 @@ env:
     caddy-cloudflare-ddns
     caddy-cloudflare-crowdsec
     caddy-cloudflare-ddns-crowdsec
+    caddy-cloudflare-ddns-security
     caddy-duckdns
     caddy-duckdns-ddns
     caddy-duckdns-crowdsec

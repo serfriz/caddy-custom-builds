@@ -1,0 +1,105 @@
+# Workflow to build and push a Docker image to Docker Hub, GitHub and Quay Container Registries
+name: Build caddy-cloudflare-ddns-security
+
+# Controls when the action will run
+on:
+  workflow_dispatch:  # allows to run the workflow manually from the Actions tab
+  push:
+    branches: main
+    paths:
+      - caddy-cloudflare-ddns-security/Dockerfile
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  DOCKER_BUILDKIT: 1
+  DOCKER_NAME: caddy-cloudflare-ddns-security
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare dynamic DNS/IPs and Caddy Security modules"
+
+# Jobs to run once the workflow is triggered
+jobs:
+  # Job to get image and repository details
+  metadata:
+    name: Get image and repository details
+    runs-on: ubuntu-latest
+
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      labels: ${{ steps.metadata.outputs.labels }}
+      tags: ${{ steps.metadata.outputs.tags }}
+      platforms: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/arm/v7,linux/arm/v6
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Parse Caddy version
+        id: version
+        run: echo "version=$(grep -Eo 'caddy:[0-9]+\.[0-9]+\.[0-9]+$' $DOCKER_NAME/Dockerfile | cut -d ':' -f2)" | tee -a $GITHUB_OUTPUT
+
+      - name: Generate image metadata with Caddy version
+        uses: docker/metadata-action@v5
+        id: metadata
+        with:
+          images: |
+            docker.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
+            ghcr.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
+            quay.io/${{ github.actor }}/${{ env.DOCKER_NAME }}
+          tags: |
+            type=semver,pattern={{version}},value=v${{ steps.version.outputs.version }}
+            type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.version }}
+            type=semver,pattern={{major}},value=v${{ steps.version.outputs.version }}
+          labels: |
+            org.opencontainers.image.title=${{ env.DOCKER_NAME }}
+            org.opencontainers.image.description=${{ env.DOCKER_DESCRIPTION }}
+
+  # Job to build and publish Docker image
+  build:
+    name: Build and publish Docker image
+    runs-on: ubuntu-latest
+    needs: metadata
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Login to GitHub Container Repository
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ github.token }}
+
+      - name: Login to Quay Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.QUAY_TOKEN }}
+
+      - name: Build and publish container image
+        uses: docker/build-push-action@v5
+        id: build
+        with:
+          context: .
+          file: ./${{ env.DOCKER_NAME }}/Dockerfile
+          push: true
+          provenance: false
+          tags: ${{ needs.metadata.outputs.tags }}
+          labels: ${{ needs.metadata.outputs.labels }}
+          platforms: ${{ needs.metadata.outputs.platforms }}
