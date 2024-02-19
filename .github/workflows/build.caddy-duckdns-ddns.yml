@@ -13,7 +13,7 @@ on:
 env:
   DOCKER_BUILDKIT: 1
   DOCKER_NAME: caddy-duckdns-ddns
-  DOCKER_DESCRIPTION: "Caddy Docker custom build with DuckDNS dynamic DNS module"
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with DuckDNS Dynamic DNS module"
 
 # Jobs to run once the workflow is triggered
 jobs:

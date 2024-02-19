@@ -13,7 +13,7 @@ on:
 env:
   DOCKER_BUILDKIT: 1
   DOCKER_NAME: caddy-duckdns-ddns-crowdsec
-  DOCKER_DESCRIPTION: "Caddy Docker custom build with DuckDNS dynamic DNS and CrowdSec Bouncer modules"
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with DuckDNS Dynamic DNS and CrowdSec Bouncer modules"
 
 # Jobs to run once the workflow is triggered
 jobs:

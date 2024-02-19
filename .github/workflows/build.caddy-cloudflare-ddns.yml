@@ -13,7 +13,7 @@ on:
 env:
   DOCKER_BUILDKIT: 1
   DOCKER_NAME: caddy-cloudflare-ddns
-  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare dynamic DNS/IPs modules"
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare Dynamic DNS/IPs modules"
 
 # Jobs to run once the workflow is triggered
 jobs:

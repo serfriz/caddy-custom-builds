@@ -1,4 +1,4 @@
-# Caddy Docker build with Cloudflare dynamic DNS and IPs modules
+# Caddy Docker build with Cloudflare Dynamic DNS and IPs modules
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns)
 [![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns)
@@ -6,111 +6,31 @@
 
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
 [![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns.yml)
-[![License](https://img.shields.io/github/license/serfriz/caddy-custom-builds?label=License)](https://github.com/serfriz/caddy-custom-builds/blob/main/LICENSE)
 
-This image is built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image with the following modules:
-- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
-- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
+This image is updated automatically by GitHub Actions when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image and the following modules:
+- [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
+- [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
+- [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns)
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns) `docker pull serfriz/caddy-cloudflare-ddns:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns) `docker pull quay.io/serfriz/caddy-cloudflare-ddns:latest`
+## Usage
 
-## Tags
+Since this image built off the official Caddy Docker image, the same [volumes](https://docs.docker.com/storage/volumes/) and/or [bind mounts](https://docs.docker.com/storage/bind-mounts/), ports mapping, etc. can be used with this container. Additional [environment variables](https://caddyserver.com/docs/caddyfile/concepts#environment-variables) may be needed for the added modules. Please, refer to the repository's [README](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#container-creation) file for further usage instructions.
 
-The following tags are available for the `serfriz/caddy-cloudflare-ddns` image.
+Docker builds for all Caddy supported platforms available at the following container registries:
+- [**Docker Hub**](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns) `docker pull serfriz/caddy-cloudflare-ddns:latest`
+- [**GitHub Packages**](https://ghcr.io/serfriz/caddy-cloudflare-ddns) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns:latest`
+- [**Quay**](https://quay.io/serfriz/caddy-cloudflare-ddns) `docker pull quay.io/serfriz/caddy-cloudflare-ddns:latest`
+
+### Tags
+
+The following tags are available for the `serfriz/caddy-cloudflare-ddns` image:
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
 
-## Usage
-
-Since this is built off the official Docker image all of the same volumes, port mapping, environment variables, etc. can be used with this container. Please refer to the official [Caddy Docker](https://hub.docker.com/_/caddy) image and [docs](https://caddyserver.com/docs/) for more information on using Caddy.
-
-### Create the Docker container
-
-Simply create the container as usual including your `CLOUDFLARE_API_TOKEN` as [environment variable](https://caddyserver.com/docs/caddyfile/concepts#environment-variables).
-
-```sh
-docker run --rm -it \
-  --name caddy \
-  -p 80:80 \
-  -p 443:443 \
-  -v caddy-data:/data \
-  -v caddy-config:/config \
-  -v $PWD/Caddyfile:/etc/caddy/Caddyfile \
-  -e CLOUDFLARE_API_TOKEN=UhKLc...JD9jk \
-  serfriz/caddy-cloudflare-ddns:latest
-```
-
-### Cloudflare DNS-01 ACME validation
-
-To make use of the Cloudflare DNS-01 ACME validation support at the server level, set the global [acme_dns](https://caddyserver.com/docs/caddyfile/options#acme-dns) directive in your `Caddyfile`.
-
-```Caddyfile
-{
-  acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-}
-```
-
-Or use the [`tls`](https://caddyserver.com/docs/caddyfile/directives/tls#tls) directive at each site. See the [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module for additional details.
-
-```Caddyfile
-my.domain.tld {
-  tls {
-    dns cloudflare {env.CLOUDFLARE_API_TOKEN}
-  }
-}
-```
-
-#### Creating a Cloudflare API Token
-
-You can generate a Cloudflare API token via the Cloudflare web dashboard through the following steps:
-
-1. Login to your Cloudflare [Dashboard](https://dash.cloudflare.com/)
-2. Go to [Account Profile](https://dash.cloudflare.com/profile) > [API Tokens](https://dash.cloudflare.com/profile/api-tokens)
-3. Click "Create token" (Use the "Create Custom Token" option)
-4. Grant the following permissions:
-   - `Zone > Zone > Read`
-   - `Zone > DNS > Edit`
-
-### Cloudflare IP ranges
-
-To restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to the [global options](https://caddyserver.com/docs/caddyfile/options), under servers, in your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
-
-```Caddyfile
-{
-  servers {
-    trusted_proxies cloudflare {
-      interval 12h
-      timeout 15s
-    }
-  }
-}
-```
-
-### Dynamic DNS
-
-To keep your Cloudflare DNS records updated with the public IP address of your instance, add the [dynamic_dns](https://caddyserver.com/docs/modules/dynamic_dns) directive to the [global options](https://caddyserver.com/docs/caddyfile/options) in your `Caddyfile`. This module regularly queries a service for your public IP address and updates the DNS records via Cloudflare's API whenever it changes. For additional details and advanced configuration examples refer to [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns) repository.
-
-```Caddyfile
-{
-	dynamic_dns {
-		provider cloudflare {env.CLOUDFLARE_API_TOKEN}
-		domains {
-			domain.tld
-		}
-	}
-}
-```
-
-Using the option [dynamic_domains](https://github.com/mholt/caddy-dynamicdns#dynamic-domains), it can also be configured to scan through the domains configured in the Caddyfile and try to manage those DNS records.
-
 ## Contributing
 
-Feel free to contribute, request additional Caddy custom builds with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
+Feel free to contribute, request additional Caddy images with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
 
 ## License
 

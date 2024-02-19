@@ -36,7 +36,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): to blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
 - [**Rate Limit**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#rate-limit): implements both internal and distributed HTTP rate limiting | [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit)
 - [**Caddy Security**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#caddy-security): to add different authentication methods including MFA/2FA support | [greenpau/caddy-security](https://github.com/greenpau/caddy-security)
-- [**Docker Proxy**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#docker-proxy): enables Caddy to be used for Docker containers via labels | [lucaslorentz/caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy) 
+- [**Docker Proxy**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#docker-proxy): enables Caddy to be used for Docker containers via labels | [lucaslorentz/caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy)
 - [**Sablier**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#sablier): to start your containers on demand and shut them down automatically | [acouvreur/sablier](https://github.com/acouvreur/sablier)
 
 ## Usage
@@ -129,13 +129,13 @@ caddy_container_id=$(docker ps | grep caddy | awk '{print $1;}')  # use your con
 docker exec -w /etc/caddy $caddy_container_id caddy reload
 ```
 
-To create an [alias](https://phoenixnap.com/kb/linux-alias-command) for the `caddy reload` command to make it more convenient to use, add the following line to your `~/.bashrc` or `~/.zshrc` file:
+It is possible to create an [alias](https://phoenixnap.com/kb/linux-alias-command) for the `caddy reload` command to make it more convenient to use by adding the following line to your `~/.bashrc` or `~/.zshrc` file:
     
 ```sh
 alias caddy-reload="docker exec -w /etc/caddy $(docker ps | grep caddy | awk '{print $1;}') caddy reload"
 ```
 
-Once you have added the alias to the appropriate file, you will need to source the file for the changes to take effect. You can do this by running `source ~/.bashrc` or `source ~/.zshrc` in your terminal. After this, you will be able to use the `caddy-reload` alias in your terminal sessions.
+Once you have added the alias to the appropriate file, you will need to source it for the changes to take effect. You can do this by running `source ~/.bashrc` or `source ~/.zshrc` in your terminal. After this, you will be able to use the `caddy-reload` alias in your terminal sessions.
 
 ## Configuration
 
@@ -253,6 +253,8 @@ The [rate_limit](https://caddyserver.com/docs/modules/http.handlers.rate_limit#g
 Additional information and Caddyfile configuration examples can be found in the [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit) repository.
 
 ### Caddy Security
+
+This plugin implements different authentication methods: Form-Based, Basic, Local, LDAP, OpenID Connect, OAuth 2.0, SAML, including MFA/2FA with App Authenticators and Yubico (formerly `caddy-auth-portal`). It is also an authorization plugin for HTTP request authorization based on JWT/PASETO tokens (formerly `caddy-authorize`, `caddy-auth-jwt`), and manages credentials for various integrations.
 
 Please, refer to the official [greenpau/caddy-security](https://authp.github.io/) documentation for additional details. Some configuration examples can also be found in the [authp/authp.github.io](https://github.com/authp/authp.github.io/tree/main/assets/conf) repository.
 
