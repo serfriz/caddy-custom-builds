@@ -13,15 +13,15 @@ on:
 env:
   CADDY_BUILDS: |  # list of all Caddy Docker custom builds
     caddy-cloudflare
-    caddy-cloudflare-ddns
     caddy-cloudflare-crowdsec
+    caddy-cloudflare-ddns
     caddy-cloudflare-ddns-crowdsec
     caddy-cloudflare-ddns-security
-    caddy-duckdns
-    caddy-duckdns-ddns
-    caddy-duckdns-crowdsec
-    caddy-duckdns-ddns-crowdsec
     caddy-crowdsec
+    caddy-duckdns
+    caddy-duckdns-crowdsec
+    caddy-duckdns-ddns
+    caddy-duckdns-ddns-crowdsec
     caddy-ratelimit-dockerproxy-sablier
 
 # Jobs to run once the workflow is triggered

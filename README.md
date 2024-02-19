@@ -3,178 +3,274 @@
 [![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/update-tag-release.yml?label=Auto-update)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/update-tag-release.yml)
 [![License](https://img.shields.io/github/license/serfriz/caddy-custom-builds?label=License)](https://github.com/serfriz/caddy-custom-builds/blob/main/LICENSE)
 
-This repository aims to provide flexibility and convenience to run [Caddy](https://github.com/caddyserver/caddy) with specific combinations of modules according to users' needs and preferences. All images are built automatically when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image.
+[Caddy](https://github.com/caddyserver/caddy) takes a [modular approach](https://caddyserver.com/docs/extending-caddy) to building Docker images, allowing users to include only the [modules](https://caddyserver.com/docs/modules/) they need. This repository aims to provide flexibility and convenience to run Caddy with specific combinations of modules by providing pre-built images according to the needs and preferences of the users.
 
-If you are looking for a specific custom build not available yet in this repository, please create a new [Issue](https://github.com/serfriz/caddy-custom-builds/issues) with your request. 
+All custom images are updated automatically when a [new version](https://github.com/caddyserver/caddy/releases) of Caddy is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image. This is done by using GitHub Actions to build and push the images for all Caddy supported platforms to Docker Hub, GitHub Packages and Quay container registries.
 
-## Build with Cloudflare DNS and IP modules
+All commits and tags are signed with a GPG key to ensure their integrity and authenticity, and 2FA is enabled in the accounts involved in the management of this repository and the container registries.
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare.yml)
+## Builds
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
+If you are looking for a specific custom build not available yet in this repository, please open a new [Issue](https://github.com/serfriz/caddy-custom-builds/issues) with your request. To make sure no broken or unsafe builds are created, the requested modules should be properly maintained and listed in the Caddy's [download page](https://caddyserver.com/download). Additional information and instructions can be found by clicking on the name of the Caddy images and modules listed below.
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare) `docker pull serfriz/caddy-cloudflare:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare) `docker pull ghcr.io/serfriz/caddy-cloudflare:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare) `docker pull quay.io/serfriz/caddy-cloudflare:latest`
+### Caddy Images:
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare) file.
+- [**caddy-cloudflare**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare): includes Cloudflare DNS and IPs modules.
+- [**caddy-cloudflare-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec): includes Cloudflare DNS/IPs and CrowdSec Bouncer modules.
+- [**caddy-cloudflare-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns): includes Cloudflare Dynamic DNS and IPs modules.
+- [**caddy-cloudflare-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec): includes Cloudflare Dynamic DNS/IPs and CrowdSec Bouncer modules.
+- [**caddy-cloudflare-ddns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-security): includes Cloudflare Dynamic DNS/IPs and Caddy Security modules.
+- [**caddy-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec): includes CrowdSec Bouncer module.
+- [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
+- [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
+- [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
+- [**caddy-duckdns-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec): includes DuckDNS Dynamic DNS and CrowdSec Bouncer modules.
+- [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): inludes Rate Limit, Docker Proxy and Sablier modules.
 
-## Build with Cloudflare dynamic DNS and IP modules
+### Modules:
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--ddns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-ddns)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns.yml)
+- [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
+- [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
+- [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
+- [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns)
+- [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): to blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
+- [**Rate Limit**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#rate-limit): implements both internal and distributed HTTP rate limiting | [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit)
+- [**Caddy Security**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#caddy-security): to add different authentication methods including MFA/2FA support | [greenpau/caddy-security](https://github.com/greenpau/caddy-security)
+- [**Docker Proxy**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#docker-proxy): enables Caddy to be used for Docker containers via labels | [lucaslorentz/caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy) 
+- [**Sablier**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#sablier): to start your containers on demand and shut them down automatically | [acouvreur/sablier](https://github.com/acouvreur/sablier)
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
-- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
+## Usage
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns) `docker pull serfriz/caddy-cloudflare-ddns:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns) `docker pull quay.io/serfriz/caddy-cloudflare-ddns:latest`
+Since all images from this repository are built off the official Caddy Docker image, the same [volumes](https://docs.docker.com/storage/volumes/) and/or [bind mounts](https://docs.docker.com/storage/bind-mounts/), ports mapping, environment variables, etc. can be used with this container. Please refer to the official [Caddy Docker](https://hub.docker.com/_/caddy) image and [docs](https://caddyserver.com/docs/) for more information on using Caddy.
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns) file.
+Docker builds for all Caddy supported platforms are available at the following container registries:
+- **Docker Hub** > `docker pull serfriz/<caddy-build-name>:latest`
+- **GitHub Packages** > `docker pull ghcr.io/serfriz/<caddy-build-name>:latest`
+- **Quay** > `docker pull quay.io/serfriz/<caddy-build-name>:latest`
 
-## Build with Cloudflare DNS/IP and CrowdSec Bouncer modules
+To pull a specific build, replace `<caddy-build-name>` with the desired one. For example, to pull the `caddy-cloudflare` build from Docker Hub, use `docker pull serfriz/caddy-cloudflare:latest`.
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-crowdsec)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-crowdsec.yml)
+### Tags
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+The following tags are available for all images:
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-crowdsec) `docker pull serfriz/caddy-cloudflare-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-crowdsec) `docker pull ghcr.io/serfriz/caddy-cloudflare-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-crowdsec) `docker pull quay.io/serfriz/caddy-cloudflare-crowdsec:latest`
+- `latest`
+- `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec) file.
+### Container Creation
 
-## Build with Cloudflare dynamic DNS/IP and CrowdSec Bouncer modules
+Simply create the container using the `docker run` command, or a `docker-compose.yml` file including the neccesary [environment variables](https://caddyserver.com/docs/caddyfile/concepts#environment-variables) depending on the modules used. The following blocks contain examples for both methods using `<caddy-build-name>` as the image name (replace it with the desired Caddy build name), and including all environment variables required by the modules listed above (some may not apply to your specific build).
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--cloudflare--ddns--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-cloudflare-ddns-crowdsec)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-cloudflare-ddns-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-cloudflare-ddns-crowdsec.yml)
+#### Docker Run
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) for Cloudflare DNS-01 ACME validation support.
-- [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/).
-- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+```sh
+docker run --rm -it \
+  --name caddy \  # feel free to choose your own container name
+  --restart unless-stopped \  # run container unless stopped by user (optional)
+  -p 80:80 \  # HTTP port
+  -p 443:443 \  # HTTPS port
+  -p 443:443/udp \  # HTTP/3 port (optional)
+  -v caddy-data:/data \  # volume mount for certificates data
+  -v caddy-config:/config \  # volume mount for configuration data
+  -v $PWD/Caddyfile:/etc/caddy/Caddyfile \  # to use your own Caddyfile
+  -v $PWD/log:/var/log \  # bind mount for the log directory (optional)
+  -v $PWD/srv:/srv \  # bind mount to serve static sites or files (optional)
+  -e CLOUDFLARE_API_TOKEN=<token-value> \  # Cloudflare API token (if applicable)
+  -e DUCKDNS_API_TOKEN=<token-value> \  # DuckDNS API token (if applicable)
+  -e CROWDSEC_API_KEY=<key-value> \  # CrowdSec API key (if applicable)
+  serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
+```
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull serfriz/caddy-cloudflare-ddns-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull ghcr.io/serfriz/caddy-cloudflare-ddns-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-cloudflare-ddns-crowdsec) `docker pull quay.io/serfriz/caddy-cloudflare-ddns-crowdsec:latest`
+The volume and bind mounts can be adjusted to meet to your needs, `$PWD` is used to reference the current working directory, but you can replace it with your preferred path. The environment variables are only required if the modules used in the build require them.
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec) file.
+The default [Caddyfile](https://github.com/caddyserver/dist/blob/master/config/Caddyfile) that is included inside the Docker container is just a placeholder to serve a static Caddy welcome page with some useful instructions. So you will most likely want to mount your own `$PWD/Caddyfile` to configure Caddy according to your needs (the file must already exist in the specified path before creating the container).
 
-## Build with DuckDNS DNS module
+The [restart policy](https://docs.docker.com/config/containers/start-containers-automatically/#use-a-restart-policy) can be adjusted to your needs. The policy `unless-stopped` ensures the container is always running (even at boot) unless it is explicitly stopped by the user.
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--duckdns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-duckdns)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--duckdns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-duckdns)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--duckdns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-duckdns)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-duckdns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-duckdns.yml)
+#### Docker Compose
 
-Caddy Docker custom build with the following module:
-- [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns) for DuckDNS DNS-01 ACME validation support.
+```yaml
+version: "3.7"
+services:
+  caddy:
+    image: serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
+    container_name: caddy  # feel free to choose your own container name
+    restart: "unless-stopped"  # run container unless stopped by user (optional) 
+    ports:
+      - "80:80"  # HTTP port
+      - "443:443"  # HTTPS port
+      - "443:443/udp"  # HTTP/3 port (optional)
+    volumes:
+      - caddy-data:/data  # volume mount for certificates data
+      - caddy-config:/config  # volume mount for configuration data
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile  # to use your own Caddyfile
+      - $PWD/log:/var/log  # bind mount for the log directory (optional)
+      - $PWD/srv:/srv \  # bind mount to serve static sites or files (optional)
+    environment:
+      - CLOUDFLARE_API_TOKEN=<token-value>  # Cloudflare API token (if applicable)
+      - DUCKDNS_API_TOKEN=<token-value>  # DuckDNS API token (if applicable)
+      - CROWDSEC_API_KEY=<key-value>  # CrowdSec API key (if applicable)
+volumes:
+  caddy-data:
+    external: true
+  caddy-config:
+```
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-duckdns) `docker pull serfriz/caddy-duckdns:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-duckdns) `docker pull ghcr.io/serfriz/caddy-duckdns:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-duckdns) `docker pull quay.io/serfriz/caddy-duckdns:latest`
+Defining the data volume as [external](https://docs.docker.com/compose/compose-file/compose-file-v3/#external) makes sure `docker-compose down` does not delete the volume, but you may need to create it first using `docker volume create caddy-data`. This doesn't apply to bind mounts if you opt to use them instead of volumes.
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns) file.
+### Graceful Reloads
 
-## Build with DuckDNS dynamic DNS module
+Caddy does not require a full restart when the Caddyfile is modified. Caddy comes with a [caddy reload](https://caddyserver.com/docs/command-line#caddy-reload) command which can be used to reload its configuration with zero downtime.
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--duckdns--ddns%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--duckdns--ddns%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-duckdns-ddns)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--duckdns--ddns%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-duckdns-ddns)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-duckdns-ddns.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-duckdns-ddns.yml)
+When running Caddy in Docker, the recommended way to trigger a config reload is by executing the `caddy reload` command in the running container. First, you'll need to determine your container ID or name. Then, pass the container ID to docker exec. The working directory is set to /etc/caddy so Caddy can find your Caddyfile without additional arguments.
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns) for DuckDNS DNS-01 ACME validation support.
-- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
+```sh
+caddy_container_id=$(docker ps | grep caddy | awk '{print $1;}')  # use your container name if different from 'caddy'
+docker exec -w /etc/caddy $caddy_container_id caddy reload
+```
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns) `docker pull serfriz/caddy-duckdns-ddns:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-duckdns-ddns) `docker pull ghcr.io/serfriz/caddy-duckdns-ddns:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-duckdns-ddns) `docker pull quay.io/serfriz/caddy-duckdns-ddns:latest`
+To create an [alias](https://phoenixnap.com/kb/linux-alias-command) for the `caddy reload` command to make it more convenient to use, add the following line to your `~/.bashrc` or `~/.zshrc` file:
+    
+```sh
+alias caddy-reload="docker exec -w /etc/caddy $(docker ps | grep caddy | awk '{print $1;}') caddy reload"
+```
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns) file.
+Once you have added the alias to the appropriate file, you will need to source the file for the changes to take effect. You can do this by running `source ~/.bashrc` or `source ~/.zshrc` in your terminal. After this, you will be able to use the `caddy-reload` alias in your terminal sessions.
 
-## Build with DuckDNS DNS and CrowdSec Bounder modules
+## Configuration
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--duckdns--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-duckdns-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--duckdns--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-duckdns-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--duckdns--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-duckdns-crowdsec)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-duckdns-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-duckdns-crowdsec.yml)
+This section aims to provide some basic information on how to configure Caddy with the modules included in the custom builds, but it is not intended to be a comprehensive guide. All the examples are based on the official [Caddyfile](https://caddyserver.com/docs/caddyfile) syntax and the modules' documentation.
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns) for DuckDNS DNS-01 ACME validation support.
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+### DNS Modules
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-duckdns-crowdsec) `docker pull serfriz/caddy-duckdns-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-duckdns-crowdsec) `docker pull ghcr.io/serfriz/caddy-duckdns-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-duckdns-crowdsec) `docker pull quay.io/serfriz/caddy-duckdns-crowdsec:latest`
+To make use of the different modules that provide DNS-01 ACME validation support at the server level, set the global [acme_dns](https://caddyserver.com/docs/caddyfile/options#acme-dns) directive in your `Caddyfile` using your DNS provider's name and the respective environment variable for the API token. The example shows the use case for Cloudflare DNS with the rest of the DNS providers commented out.
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec) file.
+```Caddyfile
+{
+  acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} #  for Cloudflare
+  # acme_dns duckdns {env.DUCKDNS_API_TOKEN} #  for DuckDNS
+}
+```
 
-## Build with DuckDNS dynamic DNS and CrowdSec Bouncer modules
+Alternatively, you can use the [`tls`](https://caddyserver.com/docs/caddyfile/directives/tls#tls) directive at each site. See the [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare) module for additional details.
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--duckdns--ddns--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-duckdns-ddns-crowdsec)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-duckdns-ddns-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-duckdns-ddns-crowdsec.yml)
+```Caddyfile
+my.domain.tld {
+  tls {
+    dns cloudflare {env.CLOUDFLARE_API_TOKEN}  #  for Cloudflare
+    # dns duckdns {env.DUCKDNS_API_TOKEN}  #  for DuckDNS
+  }
+}
+```
 
-Caddy Docker custom build with the following modules:
-- [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns) for DuckDNS DNS-01 ACME validation support.
-- [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns) to update the DNS records with the public IP address of your instance.
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+#### Creating a Cloudflare API Token
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull serfriz/caddy-duckdns-ddns-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull quay.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
+You can generate a Cloudflare API token via the Cloudflare web dashboard through the following steps:
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec) file.
+1. Login to your Cloudflare [Dashboard](https://dash.cloudflare.com/)
+2. Go to [Account Profile](https://dash.cloudflare.com/profile) > [API Tokens](https://dash.cloudflare.com/profile/api-tokens)
+3. Click "Create token" (Use the "Create Custom Token" option)
+4. Grant the following permissions:
+   - `Zone > Zone > Read`
+   - `Zone > DNS > Edit`
+5. Copy the token and use it as the `CLOUDFLARE_API_TOKEN` environment variable.
 
-## Build with CrowdSec Bouncer module
+#### Creating a DuckDNS API Token
 
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--crowdsec%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-crowdsec)
-[![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--crowdsec%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-crowdsec)
-[![Quay](https://img.shields.io/badge/Quay%20-%20serfriz%2Fcaddy--crowdsec%20-%20%23CC0000?style=flat&logo=redhat)](https://quay.io/serfriz/caddy-crowdsec)
-[![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-crowdsec.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-crowdsec.yml)
+To generate a DuckDNS API token, login to your [DuckDNS](https://www.duckdns.org/) account, copy the token, and use it as the `DUCKDNS_API_TOKEN` environment variable. You can recreate the token by clicking on the three vertical lines in the top right corner next to your logged in email, and selecting the recreate token option.
 
-Caddy Docker custom build with the following module:
-- [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) to block malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions.
+### Cloudflare IPs
 
-Docker builds for all supported platforms available at the following repositories:
-- [Docker Hub](https://hub.docker.com/r/serfriz/caddy-crowdsec) `docker pull serfriz/caddy-crowdsec:latest`
-- [GitHub Container Registry](https://ghcr.io/serfriz/caddy-crowdsec) `docker pull ghcr.io/serfriz/caddy-crowdsec:latest`
-- [Quay Container Registry](https://quay.io/serfriz/caddy-crowdsec) `docker pull quay.io/serfriz/caddy-crowdsec:latest`
+To restrict access to your server only to Cloudflare's IP ranges, add the [trusted_proxies](https://caddyserver.com/docs/caddyfile/options#trusted-proxies) directive to the [global options](https://caddyserver.com/docs/caddyfile/options), under servers, in your `Caddyfile`. For additional details, refer to [trusted_proxies/cloudflare](https://caddyserver.com/docs/json/apps/http/servers/trusted_proxies/cloudflare/) documentation and [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip) repository.
 
-Additional details and usage instructions available in the build's [README](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec) file.
+```Caddyfile
+{
+  servers {
+    trusted_proxies cloudflare {
+      interval 12h
+      timeout 15s
+    }
+  }
+}
+```
+
+### Dynamic DNS
+
+To keep your DNS records updated with the public IP address of your instance, add the [dynamic_dns](https://caddyserver.com/docs/modules/dynamic_dns) directive to the [global options](https://caddyserver.com/docs/caddyfile/options) in your `Caddyfile`. This module regularly queries a service for your public IP address and updates the DNS records via your DNS provider's API whenever it changes. For additional details and advanced configuration examples refer to [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns) repository. The example shows the use case for Cloudflare DNS with the rest of the DNS providers commented out.
+
+```Caddyfile
+{
+  dynamic_dns {
+    provider cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
+    # provider duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
+    domains {
+      domain.tld
+    }
+  }
+}
+```
+
+Using the option [dynamic_domains](https://github.com/mholt/caddy-dynamicdns#dynamic-domains), it can also be configured to scan through the domains configured in the Caddyfile and try to manage those DNS records.
+
+### CrowdSec Bouncer
+
+[CrowdSec](https://www.crowdsec.net/) is a free and open source security automation tool that uses local logs and a set of scenarios to infer malicious intent. In addition to operating locally, an optional community integration is also available, through which crowd-sourced IP reputation lists are distributed.
+
+To make use of the CrowdSec Bouncer module, set the global [crowdsec](https://caddyserver.com/docs/modules/crowdsec) directive in your `Caddyfile`, and include it in every site you want to protect. For advanced usage, refer to the [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer) repository.
+
+```Caddyfile
+{
+  debug  # makes Caddy logs more detailed (optional)
+  order crowdsec first  # forces the CrowdSec directive to be executed first
+  crowdsec {
+    api_url http://localhost:8080  # it should point to your CrowdSec API (it can be a remote URL)
+    api_key {env.CROWDSEC_API_KEY}
+  }
+}
+
+my.domain.tld {
+  crowdsec
+  log {
+    output file /var/log/access.log  # the path should match the bind mount of the log directory
+  }
+}
+```
+
+#### Creating a CrowdSec API Key
+
+To register the Caddy CrowdSec Bouncer to your API, you need to run the command below on the server where the CrowdSec API is installed, and use the generated API key `CROWDSEC_API_KEY` as environment variable when creating the Caddy container.
+
+```sh
+sudo cscli bouncers add caddy-bouncer
+```
+
+For additional details, refer to the [CrowdSec documentation](https://www.crowdsec.net/blog/introduction-to-the-local-api).
+
+### Rate Limit
+
+The [rate_limit](https://caddyserver.com/docs/modules/http.handlers.rate_limit#github.com/mholt/caddy-ratelimit) HTTP handler module lets you define rate limit zones, which have a unique name of your choosing. If a rate limit is exceeded, an HTTP error with status 429 will be returned. This error can be handled using the conventional error handling routes in your config.
+
+Additional information and Caddyfile configuration examples can be found in the [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit) repository.
+
+### Caddy Security
+
+Please, refer to the official [greenpau/caddy-security](https://authp.github.io/) documentation for additional details. Some configuration examples can also be found in the [authp/authp.github.io](https://github.com/authp/authp.github.io/tree/main/assets/conf) repository.
+
+### Docker Proxy
+
+The plugin scans Docker metadata, looking for labels indicating that the service or container should be served by Caddy. Then, it generates an in-memory Caddyfile with site entries and proxies pointing to each Docker service by their DNS name or container IP. Every time a Docker object changes, the plugin updates the Caddyfile and triggers Caddy to gracefully reload with zero downtime.
+
+Additional information and Caddyfile configuration examples can be found in the [lucaslorentz/caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy) repository.
+
+### Sablier
+
+[Sablier](https://github.com/acouvreur/sablier) is a free and open-source software that can scale your workloads on demand following different strategies. Your workloads can be a docker container, a kubernetes deployment and more (see [providers](https://acouvreur.github.io/sablier/#/providers/overview) for the full list). This plugin provides an integration with Caddy.
+
+Additional information and Caddyfile configuration examples can be found in the [acouvreur/sablier](https://acouvreur.github.io/sablier/#/plugins/caddy) documentation.
 
 ## Contributing
 
-Feel free to contribute, request additional Caddy custom builds with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
+Feel free to contribute, request additional Caddy images with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
 
 ## License
 
