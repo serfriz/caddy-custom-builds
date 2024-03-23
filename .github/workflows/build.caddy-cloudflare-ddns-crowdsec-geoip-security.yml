@@ -1,5 +1,5 @@
 # Workflow to build and push a Docker image to Docker Hub, GitHub and Quay Container Registries
-name: Build caddy-cloudflare-ddns-crowdsec-geoip
+name: Build caddy-cloudflare-ddns-crowdsec-geoip-security
 
 # Controls when the action will run
 on:
@@ -7,13 +7,13 @@ on:
   push:
     branches: main
     paths:
-      - caddy-cloudflare-ddns-crowdsec-geoip/Dockerfile
+      - caddy-cloudflare-ddns-crowdsec-geoip-security/Dockerfile
 
 # Environment variables available to all jobs and steps in this workflow
 env:
   DOCKER_BUILDKIT: 1
-  DOCKER_NAME: caddy-cloudflare-ddns-crowdsec-geoip
-  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer and GeoIP Filter modules"
+  DOCKER_NAME: caddy-cloudflare-ddns-crowdsec-geoip-security
+  DOCKER_DESCRIPTION: "Caddy Docker custom build with Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules"
 
 # Jobs to run once the workflow is triggered
 jobs:

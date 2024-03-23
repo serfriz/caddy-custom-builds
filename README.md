@@ -19,6 +19,8 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-cloudflare-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec): includes Cloudflare DNS/IPs and CrowdSec Bouncer modules.
 - [**caddy-cloudflare-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns): includes Cloudflare Dynamic DNS and IPs modules.
 - [**caddy-cloudflare-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec): includes Cloudflare Dynamic DNS/IPs and CrowdSec Bouncer modules.
+- [**caddy-cloudflare-ddns-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer and GeoIP Filter modules.
+- [**caddy-cloudflare-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-cloudflare-ddns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-security): includes Cloudflare Dynamic DNS/IPs and Caddy Security modules.
 - [**caddy-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec): includes CrowdSec Bouncer module.
 - [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
