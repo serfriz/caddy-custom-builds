@@ -27,6 +27,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
 - [**caddy-duckdns-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec): includes DuckDNS Dynamic DNS and CrowdSec Bouncer modules.
+- [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
 
 ### Modules:
@@ -34,6 +35,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
+- [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://caddyserver.com/docs/modules/dynamic_dns)
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): to blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
 - [**Rate Limit**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#rate-limit): implements both internal and distributed HTTP rate limiting | [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit)
@@ -81,6 +83,9 @@ docker run --rm -it \
   -e CLOUDFLARE_API_TOKEN=<token-value> \  # Cloudflare API token (if applicable)
   -e DUCKDNS_API_TOKEN=<token-value> \  # DuckDNS API token (if applicable)
   -e CROWDSEC_API_KEY=<key-value> \  # CrowdSec API key (if applicable)
+  -e NETCUP_CUSTOMER_NUMBER=<number-value> \  # Netcup customer number (if applicable)
+  -e NETCUP_API_KEY=<key-value> \  # Netcup API key (if applicable)
+  -e NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
   serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
 ```
 
@@ -113,6 +118,9 @@ services:
       - CLOUDFLARE_API_TOKEN=<token-value>  # Cloudflare API token (if applicable)
       - DUCKDNS_API_TOKEN=<token-value>  # DuckDNS API token (if applicable)
       - CROWDSEC_API_KEY=<key-value>  # CrowdSec API key (if applicable)
+      - NETCUP_CUSTOMER_NUMBER=<number-value> \  # Netcup customer number (if applicable)
+      - NETCUP_API_KEY=<key-value> \  # Netcup API key (if applicable)
+      - NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
 volumes:
   caddy-data:
     external: true
@@ -152,6 +160,11 @@ To make use of the different modules that provide DNS-01 ACME validation support
 {
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} #  for Cloudflare
   # acme_dns duckdns {env.DUCKDNS_API_TOKEN} #  for DuckDNS
+  # acme_dns netcup {  # for Netcup
+		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
+		# 	api_key {env.NETCUP_API_KEY}
+		# 	api_password {env.NETCUP_API_PASSWORD}
+		# }
 }
 ```
 
@@ -160,8 +173,13 @@ Alternatively, you can use the [`tls`](https://caddyserver.com/docs/caddyfile/di
 ```Caddyfile
 my.domain.tld {
   tls {
-    dns cloudflare {env.CLOUDFLARE_API_TOKEN}  #  for Cloudflare
-    # dns duckdns {env.DUCKDNS_API_TOKEN}  #  for DuckDNS
+    dns cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
+    # dns duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
+    # dns netcup {  # for Netcup
+		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
+		# 	api_key {env.NETCUP_API_KEY}
+		# 	api_password {env.NETCUP_API_PASSWORD}
+		# }
   }
 }
 ```
@@ -181,6 +199,10 @@ You can generate a Cloudflare API token via the Cloudflare web dashboard through
 #### Creating a DuckDNS API Token
 
 To generate a DuckDNS API token, login to your [DuckDNS](https://www.duckdns.org/) account, copy the token, and use it as the `DUCKDNS_API_TOKEN` environment variable. You can recreate the token by clicking on the three vertical lines in the top right corner next to your logged in email, and selecting the recreate token option.
+
+#### Creating a Netcup API Token
+
+To generate a Netcup API token follow the steps from the [Netcup API docs](https://helpcenter.netcup.com/en/wiki/general/our-api). Use the `NETCUP_CUSTOMER_NUMBER`, `NETCUP_API_KEY` and `NETCUP_API_PASSWORD` environment variables in the Docker Compose/Run and Caddyfile configuration.
 
 ### Cloudflare IPs
 
@@ -206,6 +228,11 @@ To keep your DNS records updated with the public IP address of your instance, ad
   dynamic_dns {
     provider cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
     # provider duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
+    # dns netcup {  # for Netcup
+		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
+		# 	api_key {env.NETCUP_API_KEY}
+		# 	api_password {env.NETCUP_API_PASSWORD}
+		# }
     domains {
       domain.tld
     }
