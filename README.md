@@ -28,6 +28,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
 - [**caddy-duckdns-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec): includes DuckDNS Dynamic DNS and CrowdSec Bouncer modules.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
+- [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
 
 ### Modules:
