@@ -1,8 +1,8 @@
-**Caddy v2.8.0 was just released!** :tada:
+**Caddy v2.8 is out!** :tada:
 
-It brings many new features and improvements, but also some **`breaking changes`**, so make sure to check the [release notes](https://github.com/caddyserver/caddy/releases/tag/v2.8.0) before upgrading. Once the official Caddy images are available on Docker Hub (there is usually a bit of delay between the GitHub release and the images being published), GitHub Actions will update the custom builds with the latest version of Caddy and the modules.
+It brings many new features and improvements, but also some **`breaking changes`**, so make sure to check the [release notes](https://github.com/caddyserver/caddy/releases/tag/v2.8.0) before upgrading. There is usually a bit of delay between the GitHub release and the images being published on Docker Hub, GitHub Actions will update the custom builds with the latest Caddy version as soon as they are available for all platforms.
 
-As a side note, since the release cycle of many modules is much faster than Caddy's, I will add a cron job to periodically re-build all Caddy custom images with the latest version of their respective modules at least once a month. Those who are already running Caddy's latest version will be able to force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
+As a side note, since the update cycle of many modules is much faster than Caddy's, I plan to add a cron job to periodically re-build all Caddy custom images with the latest version of their respective modules at least once a month. Those who are already running Caddy's latest version will be able to force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
 
 # Caddy Docker Custom Builds
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
