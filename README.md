@@ -1,6 +1,6 @@
 **Caddy v2.8 is out!** :tada:
 
-It brings many new features and improvements, but also some **`breaking changes`**, so make sure to check the [release notes](https://github.com/caddyserver/caddy/releases/tag/v2.8.0) before upgrading. There is usually a bit of delay between the GitHub release and the images being published on Docker Hub, GitHub Actions will update the custom builds with the latest Caddy version as soon as they are available for all platforms.
+It brings many new features and improvements, but also some **`breaking changes`**, so make sure to check the [release notes](https://github.com/caddyserver/caddy/releases/tag/v2.8.0) before upgrading. There is usually a bit of delay between the GitHub release and the official Caddy images being published on Docker Hub, GitHub Actions will update the custom builds to the latest Caddy version as soon as the images are available for all platforms.
 
 As a side note, since the update cycle of many modules is much faster than Caddy's, I plan to add a cron job to periodically re-build all Caddy custom images with the latest version of their respective modules at least once a month. Those who are already running Caddy's latest version will be able to force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
 
