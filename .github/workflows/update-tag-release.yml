@@ -25,9 +25,9 @@ env:
     caddy-duckdns-ddns
     caddy-duckdns-ddns-crowdsec
     caddy-eventsexec
+    caddy-netcup
+    caddy-netcup-ddns
     caddy-ratelimit-dockerproxy-sablier
-  # caddy-netcup
-  # caddy-netcup-ddns
 
 # Jobs to run once the workflow is triggered
 jobs:
