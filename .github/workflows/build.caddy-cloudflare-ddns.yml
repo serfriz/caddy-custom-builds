@@ -93,7 +93,7 @@ jobs:
           password: ${{ secrets.QUAY_TOKEN }}
 
       - name: Build and publish container image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         id: build
         with:
           context: .
