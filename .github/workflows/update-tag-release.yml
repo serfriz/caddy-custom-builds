@@ -20,6 +20,7 @@ env:
     caddy-cloudflare-ddns-crowdsec-geoip-security
     caddy-cloudflare-ddns-security
     caddy-crowdsec
+    caddy-crowdsec-geoip-ratelimit-security-dockerproxy
     caddy-duckdns
     caddy-duckdns-crowdsec
     caddy-duckdns-ddns

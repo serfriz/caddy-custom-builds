@@ -29,6 +29,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-cloudflare-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-cloudflare-ddns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-security): includes Cloudflare Dynamic DNS/IPs and Caddy Security modules.
 - [**caddy-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec): includes CrowdSec Bouncer module.
+- [**caddy-crowdsec-geoip-ratelimit-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip-ratelimit-security-dockerproxy): includes CrowdSec Bouncer, GeoIP Filter, Rate Limit, Caddy Security and Docker Proxy modules.
 - [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
 - [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
