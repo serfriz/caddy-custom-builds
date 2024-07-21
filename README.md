@@ -1,9 +1,3 @@
-**Caddy v2.8 is out!** :tada:
-
-It brings many new features and improvements, but also some **`breaking changes`**, so make sure to check the [release notes](https://github.com/caddyserver/caddy/releases/tag/v2.8.0) before upgrading. There is usually a bit of delay between the GitHub release and the official Caddy images being published on Docker Hub, GitHub Actions will update the custom builds to the latest Caddy version as soon as the images are available for all platforms.
-
-As a side note, since the update cycle of many modules is much faster than Caddy's, I plan to add a cron job to periodically re-build all Caddy custom images with the latest version of their respective modules at least once a month. Those who are already running Caddy's latest version will be able to force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
-
 # Caddy Docker Custom Builds
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/serfriz/caddy-custom-builds?label=Release)](https://github.com/serfriz/caddy-custom-builds/releases)
 [![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/update-tag-release.yml?label=Auto-update)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/update-tag-release.yml)
@@ -11,7 +5,7 @@ As a side note, since the update cycle of many modules is much faster than Caddy
 
 [Caddy](https://github.com/caddyserver/caddy) takes a [modular approach](https://caddyserver.com/docs/extending-caddy) to building Docker images, allowing users to include only the [modules](https://caddyserver.com/docs/modules/) they need. This repository aims to provide flexibility and convenience to run Caddy with specific combinations of modules by providing pre-built images according to the needs and preferences of the users.
 
-All custom images are updated automatically when a [new version](https://github.com/caddyserver/caddy/releases) of Caddy is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image. This is done by using GitHub Actions to build and push the images for all Caddy supported platforms to Docker Hub, GitHub Packages and Quay container registries.
+All custom images are updated automatically when a [new version](https://github.com/caddyserver/caddy/releases) of Caddy is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image. This is done by using GitHub Actions to build and push the images for all Caddy supported platforms to Docker Hub, GitHub Packages and Quay container registries. In addition, since the update cycle of many modules is faster than Caddy's, all custom images are periodically re-built with the latest version of their respective modules on the first day of every month. Those who are already running Caddy's latest version can force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
 
 All commits and tags are signed with a GPG key to ensure their integrity and authenticity, and 2FA is enabled in the accounts involved in the management of this repository and the container registries.
 

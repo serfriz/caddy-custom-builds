@@ -4,6 +4,8 @@ name: Build caddy-cloudflare-ddns-crowdsec
 # Controls when the action will run
 on:
   workflow_dispatch:  # allows to run the workflow manually from the Actions tab
+  schedule:
+    - cron: '0 0 1 * *'  # runs at 00:00 on the first day of every month
   push:
     branches: main
     paths:
