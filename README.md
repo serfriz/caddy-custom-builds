@@ -33,6 +33,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-eventsexec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-eventsexec): includes Events Exec module.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
+- [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
 
 ### Modules:
@@ -41,6 +42,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
 - [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
+- [**Porkbun DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Porkbun DNS-01 ACME validation support | [caddy-dns/porkbun](https://github.com/caddy-dns/porkbun)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns)
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
 - [**Rate Limit**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#rate-limit): implements both internal and distributed HTTP rate limiting | [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit)
@@ -92,6 +94,8 @@ docker run --rm -it \
   -e NETCUP_CUSTOMER_NUMBER=<number-value> \  # Netcup customer number (if applicable)
   -e NETCUP_API_KEY=<key-value> \  # Netcup API key (if applicable)
   -e NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
+  -e PORKBUN_API_KEY=<key-value> \  # Porkbun API key (if applicable)
+  -e PORKBUN_API_SECRET_KEY=<secret-key-value> \  # Porkbun API secret key (if applicable)
   serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
 ```
 
@@ -124,9 +128,11 @@ services:
       - CLOUDFLARE_API_TOKEN=<token-value>  # Cloudflare API token (if applicable)
       - DUCKDNS_API_TOKEN=<token-value>  # DuckDNS API token (if applicable)
       - CROWDSEC_API_KEY=<key-value>  # CrowdSec API key (if applicable)
-      - NETCUP_CUSTOMER_NUMBER=<number-value> \  # Netcup customer number (if applicable)
-      - NETCUP_API_KEY=<key-value> \  # Netcup API key (if applicable)
-      - NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
+      - NETCUP_CUSTOMER_NUMBER=<number-value>  # Netcup customer number (if applicable)
+      - NETCUP_API_KEY=<key-value>  # Netcup API key (if applicable)
+      - NETCUP_API_PASSWORD=<password-value>  # Netcup API password (if applicable)
+      - PORKBUN_API_KEY=<key-value>  # Porkbun API key (if applicable)
+      - PORKBUN_API_SECRET_KEY=<secret-key-value>  # Porkbun API secret key (if applicable)
 volumes:
   caddy-data:
     external: true
@@ -167,10 +173,14 @@ To make use of the different modules that provide DNS-01 ACME validation support
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} #  for Cloudflare
   # acme_dns duckdns {env.DUCKDNS_API_TOKEN} #  for DuckDNS
   # acme_dns netcup {  # for Netcup
-		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
-		# 	api_key {env.NETCUP_API_KEY}
-		# 	api_password {env.NETCUP_API_PASSWORD}
-		# }
+  #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
+  #   api_key {env.NETCUP_API_KEY}
+  #   api_password {env.NETCUP_API_PASSWORD}
+  # }
+  # acme_dns porkbun {  # for Porkbun
+  #   api_key {env.PORKBUN_API_KEY}
+  #   api_secret_key {env.PORKBUN_API_SECRET_KEY}
+  # }
 }
 ```
 
@@ -182,10 +192,14 @@ my.domain.tld {
     dns cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
     # dns duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
     # dns netcup {  # for Netcup
-		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
-		# 	api_key {env.NETCUP_API_KEY}
-		# 	api_password {env.NETCUP_API_PASSWORD}
-		# }
+    #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
+    #   api_key {env.NETCUP_API_KEY}
+    #   api_password {env.NETCUP_API_PASSWORD}
+    # }
+    # dns porkbun {  # for Porkbun
+    #   api_key {env.PORKBUN_API_KEY}
+    #   api_secret_key {env.PORKBUN_API_SECRET_KEY}
+    # }
   }
 }
 ```
@@ -235,10 +249,10 @@ To keep your DNS records updated with the public IP address of your instance, ad
     provider cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
     # provider duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
     # dns netcup {  # for Netcup
-		# 	customer_number {env.NETCUP_CUSTOMER_NUMBER}
-		# 	api_key {env.NETCUP_API_KEY}
-		# 	api_password {env.NETCUP_API_PASSWORD}
-		# }
+    #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
+    #   api_key {env.NETCUP_API_KEY}
+    #   api_password {env.NETCUP_API_PASSWORD}
+    # }
     domains {
       domain.tld
     }

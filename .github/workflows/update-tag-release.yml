@@ -30,6 +30,7 @@ env:
     caddy-eventsexec
     caddy-netcup
     caddy-netcup-ddns
+    caddy-porkbun-dockerproxy
     caddy-ratelimit-dockerproxy-sablier
 
 # Jobs to run once the workflow is triggered
