@@ -123,7 +123,7 @@ services:
       - caddy-config:/config  # volume mount for configuration data
       - $PWD/Caddyfile:/etc/caddy/Caddyfile  # to use your own Caddyfile
       - $PWD/log:/var/log  # bind mount for the log directory (optional)
-      - $PWD/srv:/srv \  # bind mount to serve static sites or files (optional)
+      - $PWD/srv:/srv  # bind mount to serve static sites or files (optional)
     environment:
       - CLOUDFLARE_API_TOKEN=<token-value>  # Cloudflare API token (if applicable)
       - DUCKDNS_API_TOKEN=<token-value>  # DuckDNS API token (if applicable)
