@@ -32,6 +32,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-duckdns-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec): includes DuckDNS Dynamic DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec-geoip-security): includes DuckDNS Dynamic DNS, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-eventsexec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-eventsexec): includes Events Exec module.
+- [**caddy-gandi**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-gandi): includes Gandi DNS module.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
@@ -42,6 +43,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
+- [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
 - [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
 - [**Porkbun DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Porkbun DNS-01 ACME validation support | [caddy-dns/porkbun](https://github.com/caddy-dns/porkbun)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns)
@@ -92,6 +94,7 @@ docker run --rm -it \
   -e CLOUDFLARE_API_TOKEN=<token-value> \  # Cloudflare API token (if applicable)
   -e DUCKDNS_API_TOKEN=<token-value> \  # DuckDNS API token (if applicable)
   -e CROWDSEC_API_KEY=<key-value> \  # CrowdSec API key (if applicable)
+  -e GANDI_BEARER_TOKEN=<token-value> \  # Gandi API token (if applicable)
   -e NETCUP_CUSTOMER_NUMBER=<number-value> \  # Netcup customer number (if applicable)
   -e NETCUP_API_KEY=<key-value> \  # Netcup API key (if applicable)
   -e NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
@@ -129,6 +132,7 @@ services:
       - CLOUDFLARE_API_TOKEN=<token-value>  # Cloudflare API token (if applicable)
       - DUCKDNS_API_TOKEN=<token-value>  # DuckDNS API token (if applicable)
       - CROWDSEC_API_KEY=<key-value>  # CrowdSec API key (if applicable)
+      - GANDI_BEARER_TOKEN=<token-value>  # Gandi API token (if applicable)
       - NETCUP_CUSTOMER_NUMBER=<number-value>  # Netcup customer number (if applicable)
       - NETCUP_API_KEY=<key-value>  # Netcup API key (if applicable)
       - NETCUP_API_PASSWORD=<password-value>  # Netcup API password (if applicable)
@@ -173,6 +177,7 @@ To make use of the different modules that provide DNS-01 ACME validation support
 {
   acme_dns cloudflare {env.CLOUDFLARE_API_TOKEN} #  for Cloudflare
   # acme_dns duckdns {env.DUCKDNS_API_TOKEN} #  for DuckDNS
+  # acme_dns gandi {env.GANDI_BEARER_TOKEN} #  for Gandi
   # acme_dns netcup {  # for Netcup
   #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
   #   api_key {env.NETCUP_API_KEY}
@@ -192,6 +197,7 @@ my.domain.tld {
   tls {
     dns cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
     # dns duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
+    # dns gandi {env.GANDI_BEARER_TOKEN}  # for Gandi
     # dns netcup {  # for Netcup
     #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
     #   api_key {env.NETCUP_API_KEY}
