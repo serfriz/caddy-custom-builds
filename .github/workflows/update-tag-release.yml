@@ -28,6 +28,7 @@ env:
     caddy-duckdns-ddns
     caddy-duckdns-ddns-crowdsec
     caddy-duckdns-ddns-crowdsec-geoip-security
+    caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy
     caddy-eventsexec
     caddy-gandi
     caddy-netcup

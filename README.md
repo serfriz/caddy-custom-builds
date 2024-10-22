@@ -31,6 +31,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
 - [**caddy-duckdns-ddns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec): includes DuckDNS Dynamic DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec-geoip-security): includes DuckDNS Dynamic DNS, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
+- [**caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy): includes DuckDNS Dynamic DNS, CrowdSec Bouncer, GeoIP Filter, Caddy Security and Docker Proxy modules.
 - [**caddy-eventsexec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-eventsexec): includes Events Exec module.
 - [**caddy-gandi**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-gandi): includes Gandi DNS module.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
