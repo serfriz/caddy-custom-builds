@@ -33,6 +33,7 @@ env:
     caddy-gandi
     caddy-netcup
     caddy-netcup-ddns
+    caddy-netcup-ddns-geoip
     caddy-ovh-crowdsec-geoip
     caddy-porkbun-dockerproxy
     caddy-ratelimit-dockerproxy-sablier
