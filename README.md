@@ -23,6 +23,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-cloudflare-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-cloudflare-ddns-crowdsec-geoip-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security-dockerproxy): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter, Caddy Security and Docker Proxy modules.
 - [**caddy-cloudflare-ddns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-security): includes Cloudflare Dynamic DNS/IPs and Caddy Security modules.
+- [**caddy-cloudns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudns): includes ClouDNS DNS module.
 - [**caddy-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec): includes CrowdSec Bouncer module.
 - [**caddy-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip): includes CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-crowdsec-geoip-ratelimit-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip-ratelimit-security-dockerproxy): includes CrowdSec Bouncer, GeoIP Filter, Rate Limit, Caddy Security and Docker Proxy modules.
@@ -45,9 +46,11 @@ If you are looking for a specific custom build not available yet in this reposit
 
 - [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
+- [**ClouDNS DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for ClouDNS DNS-01 ACME validation support | [anxuanzi/caddy-dns-cloudns](https://github.com/anxuanzi/caddy-dns-cloudns)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
 - [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
 - [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
+- [**OVH DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for OVH DNS-01 ACME validation support | [caddy-dns/ovh](https://github.com/caddy-dns/ovh)
 - [**Porkbun DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Porkbun DNS-01 ACME validation support | [caddy-dns/porkbun](https://github.com/caddy-dns/porkbun)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns)
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
@@ -204,6 +207,7 @@ To make use of the different modules that provide DNS-01 ACME validation support
   #   application_secret {env.OVH_APPLICATION_SECRET}
   #   consumer_key {env.OVH_CONSUMER_KEY}
   # }
+  # Please refer to the respective Caddy DNS plugin page for other DNS providers
 }
 ```
 
@@ -230,6 +234,7 @@ my.domain.tld {
     #   application_secret {env.OVH_APPLICATION_SECRET}
     #   consumer_key {env.OVH_CONSUMER_KEY}
     # }
+    # Please refer to the respective Caddy DNS plugin page for other DNS providers
   }
 }
 ```
@@ -282,11 +287,23 @@ To keep your DNS records updated with the public IP address of your instance, ad
   dynamic_dns {
     provider cloudflare {env.CLOUDFLARE_API_TOKEN}  # for Cloudflare
     # provider duckdns {env.DUCKDNS_API_TOKEN}  # for DuckDNS
-    # dns netcup {  # for Netcup
+    # provider gandi {env.GANDI_BEARER_TOKEN}  # for Gandi
+    # provider netcup {  # for Netcup
     #   customer_number {env.NETCUP_CUSTOMER_NUMBER}
     #   api_key {env.NETCUP_API_KEY}
     #   api_password {env.NETCUP_API_PASSWORD}
     # }
+    # provider porkbun {  # for Porkbun
+    #   api_key {env.PORKBUN_API_KEY}
+    #   api_secret_key {env.PORKBUN_API_SECRET_KEY}
+    # }
+    # provider ovh {  # for OVH
+    #   endpoint {env.OVH_ENDPOINT}
+    #   application_key {env.OVH_APPLICATION_KEY}
+    #   application_secret {env.OVH_APPLICATION_SECRET}
+    #   consumer_key {env.OVH_CONSUMER_KEY}
+    # }
+    # Please refer to the respective Caddy DNS plugin page for other DNS providers
     domains {
       domain.tld
     }
