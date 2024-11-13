@@ -2,7 +2,7 @@
 FROM caddy:2.8.4-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/anxuanzi/caddy-dns-cloudns
+    --with github.com/anxuanzi/caddy-dns-ClouDNS
 
 FROM caddy:2.8.4
 
