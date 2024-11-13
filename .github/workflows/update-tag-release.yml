@@ -29,11 +29,11 @@ env:
     caddy-duckdns-ddns-crowdsec
     caddy-duckdns-ddns-crowdsec-geoip-security
     caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy
-    caddy-ovh-crowdsec-geoip
     caddy-eventsexec
     caddy-gandi
     caddy-netcup
     caddy-netcup-ddns
+    caddy-ovh-crowdsec-geoip
     caddy-porkbun-dockerproxy
     caddy-ratelimit-dockerproxy-sablier
 

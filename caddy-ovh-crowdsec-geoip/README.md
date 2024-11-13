@@ -1,4 +1,4 @@
-# Caddy Docker build with CrowdSec Bouncer and GeoIP Filter modules
+# Caddy Docker build with OVH DNS, CrowdSec Bouncer and GeoIP Filter modules
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--ovh--crowdsec--geoip%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-ovh-crowdsec-geoip)
 [![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--ovh--crowdsec--geoip%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-ovh-crowdsec-geoip)
@@ -8,7 +8,7 @@
 [![GitHub build status](https://img.shields.io/github/actions/workflow/status/serfriz/caddy-custom-builds/build.caddy-ovh-crowdsec-geoip.yml?label=Build)](https://github.com/serfriz/caddy-custom-builds/actions/workflows/build.caddy-ovh-crowdsec-geoip.yml)
 
 This image is updated automatically by GitHub Actions when a new version of [Caddy](https://github.com/caddyserver/caddy) is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image and the following modules:
-- [**OVH DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for OVH DNS-01 ACME validation support | [caddy-dns/ovh](https://github.com/caddy-dns/)
+- [**OVH DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for OVH DNS-01 ACME validation support | [caddy-dns/ovh](https://github.com/caddy-dns/ovh)
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): to blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
 - [**GeoIP Filter:**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#geoip-filter) to allow or block traffic from specific regions based on [Maxmind GeoLite2 database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) | [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation)
 

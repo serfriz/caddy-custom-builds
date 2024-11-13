@@ -36,6 +36,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-gandi**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-gandi): includes Gandi DNS module.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
+- [**caddy-ovh-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ovh-crowdsec-geoip): includes OVH DNS, CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
 
@@ -101,6 +102,10 @@ docker run --rm -it \
   -e NETCUP_API_PASSWORD=<password-value> \  # Netcup API password (if applicable)
   -e PORKBUN_API_KEY=<key-value> \  # Porkbun API key (if applicable)
   -e PORKBUN_API_SECRET_KEY=<secret-key-value> \  # Porkbun API secret key (if applicable)
+  -e OVH_ENDPOINT=<endpoint-value> \  # OVH endpoint (if applicable)
+  -e OVH_APPLICATION_KEY=<application-value> \  # OVH application key (if applicable)
+  -e OVH_APPLICATION_SECRET=<secret-value> \  # OVH application secret (if applicable)
+  -e OVH_CONSUMER_KEY=<consumer-key-value> \  # OVH consumer key (if applicable)
   serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
 ```
 
@@ -139,6 +144,10 @@ services:
       - NETCUP_API_PASSWORD=<password-value>  # Netcup API password (if applicable)
       - PORKBUN_API_KEY=<key-value>  # Porkbun API key (if applicable)
       - PORKBUN_API_SECRET_KEY=<secret-key-value>  # Porkbun API secret key (if applicable)
+      - OVH_ENDPOINT=<endpoint-value>  # OVH endpoint (if applicable)
+      - OVH_APPLICATION_KEY=<application-value>  # OVH application key (if applicable)
+      - OVH_APPLICATION_SECRET=<secret-value>  # OVH application secret (if applicable)
+      - OVH_CONSUMER_KEY=<consumer-key-value>  # OVH consumer key (if applicable)
 volumes:
   caddy-data:
     external: true
@@ -188,6 +197,12 @@ To make use of the different modules that provide DNS-01 ACME validation support
   #   api_key {env.PORKBUN_API_KEY}
   #   api_secret_key {env.PORKBUN_API_SECRET_KEY}
   # }
+  # acme_dns ovh {  # for OVH
+  #   endpoint {env.OVH_ENDPOINT}
+  #   application_key {env.OVH_APPLICATION_KEY}
+  #   application_secret {env.OVH_APPLICATION_SECRET}
+  #   consumer_key {env.OVH_CONSUMER_KEY}
+  # }
 }
 ```
 
@@ -207,6 +222,12 @@ my.domain.tld {
     # dns porkbun {  # for Porkbun
     #   api_key {env.PORKBUN_API_KEY}
     #   api_secret_key {env.PORKBUN_API_SECRET_KEY}
+    # }
+    # dns ovh {  # for OVH
+    #   endpoint {env.OVH_ENDPOINT}
+    #   application_key {env.OVH_APPLICATION_KEY}
+    #   application_secret {env.OVH_APPLICATION_SECRET}
+    #   consumer_key {env.OVH_CONSUMER_KEY}
     # }
   }
 }
@@ -231,6 +252,10 @@ To generate a DuckDNS API token, login to your [DuckDNS](https://www.duckdns.org
 #### Creating a Netcup API Token
 
 To generate a Netcup API token follow the steps from the [Netcup API docs](https://helpcenter.netcup.com/en/wiki/general/our-api). Use the `NETCUP_CUSTOMER_NUMBER`, `NETCUP_API_KEY` and `NETCUP_API_PASSWORD` environment variables in the Docker Compose/Run and `Caddyfile` configuration.
+
+#### Creating API Tokens for Other DNS Providers
+
+The process to generate API tokens for the rest of the DNS providers is similar to the Cloudflare, DuckDNS and Netcup ones. Please refer to the respective DNS provider's documentation for additional details.
 
 ### Cloudflare IPs
 
