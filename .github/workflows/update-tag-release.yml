@@ -33,6 +33,7 @@ env:
     caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy
     caddy-eventsexec
     caddy-gandi
+    caddy-namecheap
     caddy-netcup
     caddy-netcup-ddns
     caddy-netcup-ddns-geoip
