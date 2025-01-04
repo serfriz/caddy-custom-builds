@@ -25,6 +25,7 @@ env:
     caddy-crowdsec-geoip
     caddy-crowdsec-geoip-ratelimit-security-dockerproxy
     caddy-desec-crowdsec-geoip-ratelimit
+    caddy-desec-geoip-coraza-dockerproxy
     caddy-duckdns
     caddy-duckdns-crowdsec
     caddy-duckdns-ddns

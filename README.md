@@ -28,6 +28,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip): includes CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-crowdsec-geoip-ratelimit-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip-ratelimit-security-dockerproxy): includes CrowdSec Bouncer, GeoIP Filter, Rate Limit, Caddy Security and Docker Proxy modules.
 - [**caddy-desec-crowdsec-geoip-ratelimit**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-crowdsec-geoip-ratelimit): includes deSEC DNS, CrowdSec Bouncer, GeoIP Filter and Rate Limit modules.
+- [**caddy-desec-geoip-coraza-dockerproxy**](https://github.com/serfriz/caddy-desec-geoip-coraza-dockerproxy): inludes deSEC DNS, GeoIP Filter, Coraza WAF and Docker Proxy modules.
 - [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
 - [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
@@ -63,6 +64,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Docker Proxy**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#docker-proxy): enables Caddy to be used for Docker containers via labels | [lucaslorentz/caddy-docker-proxy](https://github.com/lucaslorentz/caddy-docker-proxy)
 - [**Sablier**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#sablier): to start your containers on demand and shut them down automatically | [acouvreur/sablier](https://github.com/acouvreur/sablier)
 - [**GeoIP Filter**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#geoip-filter) to allow or block traffic from specific regions based on [Maxmind GeoLite2 database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) | [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation)
+- [**Coraza WAF**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#coraza-waf): a Web Application Firewall (WAF) for Caddy | [corazawaf/coraza-caddy](https://github.com/corazawaf/coraza-caddy)
 - [**Events Exec**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#events-exec): implements an event handler that allows to execute commands on the system | [mholt/caddy-events-exec](https://github.com/mholt/caddy-events-exec)
 
 ## Usage
@@ -380,6 +382,10 @@ Additional information and `Caddyfile` configuration examples can be found in th
 Allows Caddy to filter traffic based on the client's IP address location. This module needs access to the Maxmind GeoLite2 database which can be downloaded for free after creating an account. Additional information is available on [Maxmind official website](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data). You will specifically need the GeoLite2-Country.mmdb file, or the GeoLite2-City.mmdb if you're matching on subdivisions and metro codes.
 
 Information and examples about the usage of this module can be found on the on the [Caddy website's plugin page](https://caddyserver.com/docs/modules/http.matchers.maxmind_geolocation) and the [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation) repository.
+
+### Coraza WAF
+
+Coraza is an open source, enterprise-grade, high performance Web Application Firewall (WAF) ready to protect your beloved applications. It is written in Go, supports ModSecurity SecLang rulesets and is 100% compatible with the OWASP Core Rule Set v4. Additional information about Coraza WAF can be found on the [corazawaf/coraza](https://github.com/corazawaf/coraza) repository, and configuration examples with the Caddy module on the [corazawaf/coraza-caddy](https://github.com/corazawaf/coraza-caddy) page.
 
 ### Events Exec
 
