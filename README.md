@@ -41,6 +41,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
 - [**caddy-netcup-ddns-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup-geoip): includes Netcup Dynamic DNS and GeoIP Filter modules.
+- [**caddy-netlify-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netlify-geoip-security): includes Netlify DNS, GeoIP Filter and Caddy Security modules.
 - [**caddy-ovh-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ovh-crowdsec-geoip): includes OVH DNS, CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
@@ -55,6 +56,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
 - [**Namecheap DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Namecheap DNS-01 ACME validation support | [caddy-dns/namecheap](https://github.com/caddy-dns/namecheap)
 - [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
+- [**Netlify DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netlify DNS-01 ACME validation support | [caddy-dns/netlify](https://github.com/caddy-dns/netlify)
 - [**OVH DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for OVH DNS-01 ACME validation support | [caddy-dns/ovh](https://github.com/caddy-dns/ovh)
 - [**Porkbun DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Porkbun DNS-01 ACME validation support | [caddy-dns/porkbun](https://github.com/caddy-dns/porkbun)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns)

@@ -38,6 +38,7 @@ env:
     caddy-netcup
     caddy-netcup-ddns
     caddy-netcup-ddns-geoip
+    caddy-netlify-geoip-security
     caddy-ovh-crowdsec-geoip
     caddy-porkbun-dockerproxy
     caddy-ratelimit-dockerproxy-sablier
