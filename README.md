@@ -395,6 +395,10 @@ Coraza is an open source, enterprise-grade, high performance Web Application Fir
 
 It can be used to execute commands on the system based on specific events, such as when a certificate is renewed. This is configured in the `Caddyfile` using the standard [events](https://caddyserver.com/docs/modules/events) directive along with the [events.handlers.exec](https://caddyserver.com/docs/modules/events.handlers.exec) module. Additional information and examples can be found in the [mholt/caddy-events-exec](https://github.com/mholt/caddy-events-exec) repository. Please be mindful of any security implications of the commands you run and how you configure this module.
 
+### Defender
+
+The Caddy Defender plugin is a middleware for Caddy that allows you to block or manipulate requests based on the client's IP address. It is particularly useful for preventing unwanted traffic or polluting AI training data by returning garbage responses. It contains predefined IP ranges for popular AI services (e.g., OpenAI, DeepSeek, GitHub Copilot). More information and usage examples can be found in [mJasonLovesDoggo/caddy-defender](https://github.com/JasonLovesDoggo/caddy-defender) repository.
+
 ## Contributing
 
 Feel free to contribute, request additional Caddy images with your preferred modules, and make things better by opening an [Issue](https://github.com/serfriz/caddy-custom-builds/issues) or [Pull Request](https://github.com/serfriz/caddy-custom-builds/pulls).
