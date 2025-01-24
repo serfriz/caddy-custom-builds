@@ -2,7 +2,7 @@
 
 # --- Stage 1: Builder Stage ---
 # Use a Go base image to build the Caddy binary and the WAF module
-FROM golang:1.22.3-alpine AS builder
+FROM golang:latest AS builder
 
 # Install essential tools for building: git, wget
 #   - git: required for cloning the repository
