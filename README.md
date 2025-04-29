@@ -41,6 +41,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup Dynamic DNS module.
 - [**caddy-netcup-ddns-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup-geoip): includes Netcup Dynamic DNS and GeoIP Filter modules.
+- [**caddy-netcup-duckdns-ddns-dockerproxy-waf-defender**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup-duckdns-ddns-dockerproxy-waf-defender): includes Netcup, DuckDNS, Dynamic DNS, Docker Proxy, Coraza WAF and Defender modules.
 - [**caddy-netlify-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netlify-geoip-security): includes Netlify DNS, GeoIP Filter and Caddy Security modules.
 - [**caddy-ovh-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ovh-crowdsec-geoip): includes OVH DNS, CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
@@ -68,6 +69,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**GeoIP Filter**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#geoip-filter) to allow or block traffic from specific regions based on [Maxmind GeoLite2 database](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) | [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation)
 - [**Coraza WAF**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#coraza-waf): a Web Application Firewall (WAF) for Caddy | [corazawaf/coraza-caddy](https://github.com/corazawaf/coraza-caddy)
 - [**Events Exec**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#events-exec): implements an event handler that allows to execute commands on the system | [mholt/caddy-events-exec](https://github.com/mholt/caddy-events-exec)
+- [**Defender**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#defender): allows to block or manipulate requests based on the client's IP address | [JasonLovesDoggo/caddy-defender](https://github.com/JasonLovesDoggo/caddy-defender)
 
 ## Usage
 
@@ -392,6 +394,10 @@ Coraza is an open source, enterprise-grade, high performance Web Application Fir
 ### Events Exec
 
 It can be used to execute commands on the system based on specific events, such as when a certificate is renewed. This is configured in the `Caddyfile` using the standard [events](https://caddyserver.com/docs/modules/events) directive along with the [events.handlers.exec](https://caddyserver.com/docs/modules/events.handlers.exec) module. Additional information and examples can be found in the [mholt/caddy-events-exec](https://github.com/mholt/caddy-events-exec) repository. Please be mindful of any security implications of the commands you run and how you configure this module.
+
+### Defender
+
+The Caddy Defender plugin is a middleware for Caddy that allows you to block or manipulate requests based on the client's IP address. It is particularly useful for preventing unwanted traffic or polluting AI training data by returning garbage responses. It contains predefined IP ranges for popular AI services (e.g., OpenAI, DeepSeek, GitHub Copilot). More information and usage examples can be found in [mJasonLovesDoggo/caddy-defender](https://github.com/JasonLovesDoggo/caddy-defender) repository.
 
 ## Contributing
 
