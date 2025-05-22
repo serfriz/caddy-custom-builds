@@ -43,6 +43,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-netcup-ddns-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup-geoip): includes Netcup Dynamic DNS and GeoIP Filter modules.
 - [**caddy-netlify-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netlify-geoip-security): includes Netlify DNS, GeoIP Filter and Caddy Security modules.
 - [**caddy-ovh-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ovh-crowdsec-geoip): includes OVH DNS, CrowdSec Bouncer and GeoIP Filter modules.
+- [**caddy-porkbun**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun): includes Porkbun DNS module.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
 
