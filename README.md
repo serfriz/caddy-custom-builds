@@ -349,6 +349,13 @@ my.domain.tld {
 
 To register the Caddy CrowdSec Bouncer to your API, you need to run the command below on the server where the CrowdSec API is installed, and use the generated API key `CROWDSEC_API_KEY` as environment variable when creating the Caddy container.
 
+#### Issues with Crowdsec and Caddy Docker Proxy
+
+Some users report that Caddy Docker Proxy fails to gracefully reload container configuration changes when the crowdsec module is active. This can lead to, for example, non-deterministic behavior in Caddy's domain matching logic. To avoid this, set `CADDY_DOCKER_EVENT_THROTTLE_INTERVAL=2000` (two seconds) in the Caddy container. This setting appears to fix the problem by adding a negligible delay to the application of new configuration changes.
+
+For more information, see https://github.com/hslatman/caddy-crowdsec-bouncer/issues/61.
+
+
 ```sh
 sudo cscli bouncers add caddy-bouncer
 ```
