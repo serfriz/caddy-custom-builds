@@ -52,6 +52,7 @@ jobs:
             type=semver,pattern={{version}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}}.{{minor}},value=v${{ steps.version.outputs.version }}
             type=semver,pattern={{major}},value=v${{ steps.version.outputs.version }}
+            type=schedule,pattern={{date 'YYYYMMDD-hhmmss'}}
           labels: |
             org.opencontainers.image.title=${{ env.DOCKER_NAME }}
             org.opencontainers.image.description=${{ env.DOCKER_DESCRIPTION }}
