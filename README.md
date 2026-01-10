@@ -45,6 +45,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-ovh-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ovh-crowdsec-geoip): includes OVH DNS, CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-porkbun-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-porkbun-dockerproxy): includes Porkbun DNS and Docker Proxy modules.
 - [**caddy-ratelimit-dockerproxy-sablier**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-ratelimit-dockerproxy-sablier): includes Rate Limit, Docker Proxy and Sablier modules.
+- [**caddy-transip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-transip): includes TransIP DNS module.
 
 ### Modules:
 
@@ -59,6 +60,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Netlify DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netlify DNS-01 ACME validation support | [caddy-dns/netlify](https://github.com/caddy-dns/netlify)
 - [**OVH DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for OVH DNS-01 ACME validation support | [caddy-dns/ovh](https://github.com/caddy-dns/ovh)
 - [**Porkbun DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Porkbun DNS-01 ACME validation support | [caddy-dns/porkbun](https://github.com/caddy-dns/porkbun)
+- [**TransIP DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for TransIP DNS-01 ACME validation support | [caddy-dns/transip](https://github.com/caddy-dns/transip)
 - [**Dynamic DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dynamic-dns): updates the DNS records with the public IP address of your instance | [mholt/caddy-dynamicdns](https://github.com/mholt/caddy-dynamicdns)
 - [**CrowdSec Bouncer**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#crowdsec-bouncer): blocks malicious traffic based on [CrowdSec](https://www.crowdsec.net/) decisions | [hslatman/caddy-crowdsec-bouncer](https://github.com/hslatman/caddy-crowdsec-bouncer)
 - [**Rate Limit**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#rate-limit): implements both internal and distributed HTTP rate limiting | [mholt/caddy-ratelimit](https://github.com/mholt/caddy-ratelimit)
