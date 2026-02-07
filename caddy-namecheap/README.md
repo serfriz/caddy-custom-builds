@@ -1,4 +1,4 @@
-# Caddy Docker build with Netcup DNS module
+# Caddy Docker build with Namecheap DNS module
 
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub%20-%20serfriz%2Fcaddy--namecheap%20-%20%230db7ed?style=flat&logo=docker)](https://hub.docker.com/r/serfriz/caddy-namecheap)
 [![GitHub](https://img.shields.io/badge/GitHub%20-%20serfriz%2Fcaddy--namecheap%20-%20%23333?style=flat&logo=github)](https://ghcr.io/serfriz/caddy-namecheap)

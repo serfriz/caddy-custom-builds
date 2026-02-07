@@ -28,7 +28,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip): includes CrowdSec Bouncer and GeoIP Filter modules.
 - [**caddy-crowdsec-geoip-ratelimit-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip-ratelimit-security-dockerproxy): includes CrowdSec Bouncer, GeoIP Filter, Rate Limit, Caddy Security and Docker Proxy modules.
 - [**caddy-desec-crowdsec-geoip-ratelimit**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-crowdsec-geoip-ratelimit): includes deSEC DNS, CrowdSec Bouncer, GeoIP Filter and Rate Limit modules.
-- [**caddy-desec-geoip-coraza-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-geoip-coraza-dockerproxy): inludes deSEC DNS, GeoIP Filter, Coraza WAF and Docker Proxy modules.
+- [**caddy-desec-geoip-coraza-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-geoip-coraza-dockerproxy): includes deSEC DNS, GeoIP Filter, Coraza WAF and Docker Proxy modules.
 - [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
 - [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
@@ -122,7 +122,7 @@ docker run --rm -it \
   serfriz/<caddy-build-name>:latest  # replace with the desired Caddy build name
 ```
 
-The volume and bind mounts can be adjusted to meet to your needs, `$PWD` is used to reference the current working directory, but you can replace it with your preferred path. The environment variables are only required if the modules used in the build require them.
+The volume and bind mounts can be adjusted to meet your needs, `$PWD` is used to reference the current working directory, but you can replace it with your preferred path. The environment variables are only required if the modules used in the build require them.
 
 The default [Caddyfile](https://github.com/caddyserver/dist/blob/master/config/Caddyfile) that is included inside the Docker container is just a placeholder to serve a static Caddy welcome page with some useful instructions. So you will most likely want to mount your own `$PWD/Caddyfile` to configure Caddy according to your needs (the file must already exist in the specified path before creating the container).
 
@@ -391,7 +391,7 @@ Additional information and `Caddyfile` configuration examples can be found in th
 
 Allows Caddy to filter traffic based on the client's IP address location. This module needs access to the Maxmind GeoLite2 database which can be downloaded for free after creating an account. Additional information is available on [Maxmind official website](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data). You will specifically need the GeoLite2-Country.mmdb file, or the GeoLite2-City.mmdb if you're matching on subdivisions and metro codes.
 
-Information and examples about the usage of this module can be found on the on the [Caddy website's plugin page](https://caddyserver.com/docs/modules/http.matchers.maxmind_geolocation) and the [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation) repository.
+Information and examples about the usage of this module can be found on the [Caddy website's plugin page](https://caddyserver.com/docs/modules/http.matchers.maxmind_geolocation) and the [porech/caddy-maxmind-geolocation](https://github.com/porech/caddy-maxmind-geolocation) repository.
 
 ### Coraza WAF
 
