@@ -17,13 +17,13 @@ This image is updated automatically by GitHub Actions when a new version of [Cad
 Since this image built off the official Caddy Docker image, the same [volumes](https://docs.docker.com/storage/volumes/) and/or [bind mounts](https://docs.docker.com/storage/bind-mounts/), ports mapping, etc. can be used with this container. Additional [environment variables](https://caddyserver.com/docs/caddyfile/concepts#environment-variables) may be needed for the added modules. Please, refer to the repository's [README](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#container-creation) file for further usage instructions.
 
 Docker builds for all Caddy supported platforms available at the following container registries:
-- [**Docker Hub**](https://hub.docker.com/r/serfriz/caddy-duckdns-crowdsec) `docker pull serfriz/caddy-duckdns-crowdsec:latest`
-- [**GitHub Packages**](https://ghcr.io/serfriz/caddy-duckdns-crowdsec) `docker pull ghcr.io/serfriz/caddy-duckdns-crowdsec:latest`
-- [**Quay**](https://quay.io/serfriz/caddy-duckdns-crowdsec) `docker pull quay.io/serfriz/caddy-duckdns-crowdsec:latest`
+- [**Docker Hub**](https://hub.docker.com/r/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull serfriz/caddy-duckdns-ddns-crowdsec:latest`
+- [**GitHub Packages**](https://ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull ghcr.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
+- [**Quay**](https://quay.io/serfriz/caddy-duckdns-ddns-crowdsec) `docker pull quay.io/serfriz/caddy-duckdns-ddns-crowdsec:latest`
 
 ### Tags
 
-The following tags are available for the `serfriz/caddy-duckdns-crowdsec` image:
+The following tags are available for the `serfriz/caddy-duckdns-ddns-crowdsec` image:
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
