@@ -2,8 +2,7 @@
 FROM caddy:2.10.2-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/netcup \
-    --replace github.com/libdns/netcup=github.com/Monviech/libdns-netcup@libdns-patch
+    --with github.com/caddy-dns/netcup
 
 FROM caddy:2.10.2
 
