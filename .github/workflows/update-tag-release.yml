@@ -38,6 +38,7 @@ env:
     caddy-easydns
     caddy-eventsexec
     caddy-gandi
+    caddy-infomaniak
     caddy-namecheap
     caddy-netcup
     caddy-netcup-ddns

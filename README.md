@@ -41,6 +41,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-easydns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-easydns): includes EasyDNS DNS module.
 - [**caddy-eventsexec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-eventsexec): includes Events Exec module.
 - [**caddy-gandi**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-gandi): includes Gandi DNS module.
+- [**caddy-infomaniak**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-infomaniak): includes Infomaniak DNS module.
 - [**caddy-namecheap**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-namecheap): includes Namecheap DNS module.
 - [**caddy-netcup**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup): includes Netcup DNS module.
 - [**caddy-netcup-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-netcup-ddns): includes Netcup Dynamic DNS module.
@@ -64,6 +65,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
 - [**EasyDNS DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for EasyDNS DNS-01 ACME validation support | [caddy-dns/easydns](https://github.com/caddy-dns/easydns)
 - [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
+- [**Infomaniak DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Infomaniak DNS-01 ACME validation support | [caddy-dns/infomaniak](https://github.com/caddy-dns/infomaniak)
 - [**Namecheap DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Namecheap DNS-01 ACME validation support | [caddy-dns/namecheap](https://github.com/caddy-dns/namecheap)
 - [**Netcup DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netcup DNS-01 ACME validation support | [caddy-dns/netcup](https://github.com/caddy-dns/netcup)
 - [**Netlify DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Netlify DNS-01 ACME validation support | [caddy-dns/netlify](https://github.com/caddy-dns/netlify)
