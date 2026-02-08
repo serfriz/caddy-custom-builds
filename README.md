@@ -38,6 +38,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-duckdns-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec-geoip-security): includes DuckDNS Dynamic DNS, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns-crowdsec-geoip-security-dockerproxy): includes DuckDNS Dynamic DNS, CrowdSec Bouncer, GeoIP Filter, Caddy Security and Docker Proxy modules.
 - [**caddy-duckdns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-security): includes DuckDNS DNS and Caddy Security modules.
+- [**caddy-dynu**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-dynu): includes DYNU DNS module.
 - [**caddy-easydns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-easydns): includes EasyDNS DNS module.
 - [**caddy-eventsexec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-eventsexec): includes Events Exec module.
 - [**caddy-gandi**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-gandi): includes Gandi DNS module.
@@ -63,6 +64,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**deSEC DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for deSEC DNS-01 ACME validation support | [caddy-dns/desec](https://github.com/caddy-dns/desec)
 - [**DNSExit DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DNSExit DNS-01 ACME validation support | [caddy-dns/dnsexit](https://github.com/caddy-dns/dnsexit)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
+- [**DYNU DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DYNU DNS-01 ACME validation support | [caddy-dns/dynu](https://github.com/caddy-dns/dynu)
 - [**EasyDNS DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for EasyDNS DNS-01 ACME validation support | [caddy-dns/easydns](https://github.com/caddy-dns/easydns)
 - [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
 - [**Infomaniak DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Infomaniak DNS-01 ACME validation support | [caddy-dns/infomaniak](https://github.com/caddy-dns/infomaniak)
