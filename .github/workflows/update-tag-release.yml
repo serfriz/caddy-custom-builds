@@ -14,6 +14,7 @@ env:
   CADDY_BUILDS: |  # list of all Caddy Docker custom builds
     caddy-cloudflare
     caddy-cloudflare-crowdsec
+    caddy-cloudflare-crowdsec-geoip-ratelimit-security
     caddy-cloudflare-ddns
     caddy-cloudflare-ddns-crowdsec
     caddy-cloudflare-ddns-crowdsec-geoip
