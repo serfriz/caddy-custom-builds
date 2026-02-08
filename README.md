@@ -30,6 +30,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-crowdsec-geoip-ratelimit-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip-ratelimit-security-dockerproxy): includes CrowdSec Bouncer, GeoIP Filter, Rate Limit, Caddy Security and Docker Proxy modules.
 - [**caddy-desec-crowdsec-geoip-ratelimit**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-crowdsec-geoip-ratelimit): includes deSEC DNS, CrowdSec Bouncer, GeoIP Filter and Rate Limit modules.
 - [**caddy-desec-geoip-coraza-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-desec-geoip-coraza-dockerproxy): includes deSEC DNS, GeoIP Filter, Coraza WAF and Docker Proxy modules.
+- [**caddy-dnsexit**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-dnsexit): includes DNSExit DNS module.
 - [**caddy-duckdns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns): includes DuckDNS DNS module.
 - [**caddy-duckdns-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-crowdsec): includes DuckDNS DNS and CrowdSec Bouncer modules.
 - [**caddy-duckdns-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-duckdns-ddns): includes DuckDNS Dynamic DNS module.
@@ -57,6 +58,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
 - [**ClouDNS DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for ClouDNS DNS-01 ACME validation support | [anxuanzi/caddy-dns-cloudns](https://github.com/anxuanzi/caddy-dns-cloudns)
 - [**deSEC DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for deSEC DNS-01 ACME validation support | [caddy-dns/desec](https://github.com/caddy-dns/desec)
+- [**DNSExit DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DNSExit DNS-01 ACME validation support | [caddy-dns/dnsexit](https://github.com/caddy-dns/dnsexit)
 - [**DuckDNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for DuckDNS DNS-01 ACME validation support | [caddy-dns/duckdns](https://github.com/caddy-dns/duckdns)
 - [**Gandi DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Gandi DNS-01 ACME validation support | [caddy-dns/gandi](https://github.com/caddy-dns/gandi)
 - [**Namecheap DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Namecheap DNS-01 ACME validation support | [caddy-dns/namecheap](https://github.com/caddy-dns/namecheap)
