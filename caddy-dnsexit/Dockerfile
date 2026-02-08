@@ -2,7 +2,7 @@
 FROM caddy:2.10.2-builder AS builder
 
 RUN xcaddy build \
-    --with github.com/caddy-dns/dnsexit
+    --with github.com/caddy-dns/dnsexit@1.0.0-beta.1
 
 FROM caddy:2.10.2
 
