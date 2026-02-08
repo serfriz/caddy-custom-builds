@@ -43,6 +43,7 @@ env:
     caddy-ovh-crowdsec-geoip
     caddy-porkbun
     caddy-porkbun-dockerproxy
+    caddy-porkbun-geoip-ratelimit
     caddy-ratelimit-dockerproxy-sablier
     caddy-transip
 
