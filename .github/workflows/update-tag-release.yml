@@ -43,6 +43,7 @@ env:
     caddy-porkbun
     caddy-porkbun-dockerproxy
     caddy-ratelimit-dockerproxy-sablier
+    caddy-transip
 
 # Jobs to run once the workflow is triggered
 jobs:
