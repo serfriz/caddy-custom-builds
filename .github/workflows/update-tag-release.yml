@@ -44,6 +44,7 @@ env:
     caddy-netlify-geoip-security
     caddy-ovh-crowdsec-geoip
     caddy-porkbun
+    caddy-porkbun-ddns
     caddy-porkbun-dockerproxy
     caddy-porkbun-geoip-ratelimit
     caddy-ratelimit-dockerproxy-sablier
