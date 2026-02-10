@@ -24,6 +24,7 @@ If you are looking for a specific custom build not available yet in this reposit
 - [**caddy-cloudflare-ddns-crowdsec-geoip-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter and Caddy Security modules.
 - [**caddy-cloudflare-ddns-crowdsec-geoip-security-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-crowdsec-geoip-security-dockerproxy): includes Cloudflare Dynamic DNS/IPs, CrowdSec Bouncer, GeoIP Filter, Caddy Security and Docker Proxy modules.
 - [**caddy-cloudflare-ddns-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-ddns-security): includes Cloudflare Dynamic DNS/IPs and Caddy Security modules.
+- [**caddy-cloudflare-dockerproxy**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-dockerproxy): includes Cloudflare DNS and Docker Proxy modules.
 - [**caddy-cloudns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudns): includes ClouDNS DNS module.
 - [**caddy-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec): includes CrowdSec Bouncer module.
 - [**caddy-crowdsec-geoip**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-crowdsec-geoip): includes CrowdSec Bouncer and GeoIP Filter modules.
