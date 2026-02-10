@@ -5,7 +5,7 @@
 
 [Caddy](https://github.com/caddyserver/caddy) takes a [modular approach](https://caddyserver.com/docs/extending-caddy) to building Docker images, allowing users to include only the [modules](https://caddyserver.com/docs/modules/) they need. This repository aims to provide flexibility and convenience to run Caddy with specific combinations of modules by providing pre-built images according to the needs and preferences of the users.
 
-All custom images are updated automatically when a [new version](https://github.com/caddyserver/caddy/releases) of Caddy is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image. This is done by using GitHub Actions to build and push the images for all Caddy supported platforms to Docker Hub, GitHub Packages and Quay container registries. In addition, since the update cycle of many modules is faster than Caddy's, all custom images are periodically re-built with the latest version of their respective modules on the first day of every month. Those who are already running Caddy's latest version can force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
+All custom images are updated automatically when a [new version](https://github.com/caddyserver/caddy/releases) of Caddy is released using the official [Caddy Docker](https://hub.docker.com/_/caddy) image. This is done by using GitHub Actions to build and push the images for all Caddy supported platforms to Docker Hub, GitHub Packages and Quay container registries. In addition, since the update cycle of many modules is faster than Caddy's, all custom images are periodically re-built with the latest version of their respective modules on the first day of every month; see the [Tags](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#tags) section below for tag policy details. Those who are already running Caddy's latest version can force the update by re-creating the container (i.e. running `docker compose up --force-recreate` if using Docker Compose).
 
 All commits and tags are signed with a GPG key to ensure their integrity and authenticity, and 2FA is enabled in the accounts involved in the management of this repository and the container registries.
 
@@ -103,6 +103,19 @@ The following tags are available for all images:
 
 - `latest`
 - `<version>` (eg: `2.7.4`, including: `2.7`, `2`, etc.)
+
+The tags above are mutable in this repository. In practice, this means `latest`, `2`, `2.7`, or `2.7.4` may be rebuilt and repointed over time to include module updates (even when the Caddy version stays the same), without requiring this repository to track every module commit (possible, but with more complex CI logic) and without introducing new suffix/date tags on each monthly rebuild, which could trigger update notifications even when there are no meaningful changes.
+
+If you need a more reproducible reference, pin by digest instead of tag:
+
+```sh
+docker pull serfriz/caddy-cloudflare:2.7.4
+docker image inspect --format='{{index .RepoDigests 0}}' serfriz/caddy-cloudflare:2.7.4
+# Use the resulting image reference in your deployment:
+# serfriz/caddy-cloudflare@sha256:<digest>
+```
+
+Digest pinning improves reproducibility, but old digests may eventually disappear from registries due to retention/garbage collection policies.
 
 ### Container Creation
 
