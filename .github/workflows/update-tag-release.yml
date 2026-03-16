@@ -17,6 +17,7 @@ concurrency:
 # Environment variables available to all jobs and steps in this workflow
 env:
   CADDY_BUILDS: |  # list of all Caddy Docker custom builds
+    caddy-bunny-ddns
     caddy-cloudflare
     caddy-cloudflare-crowdsec
     caddy-cloudflare-crowdsec-geoip-ratelimit-security

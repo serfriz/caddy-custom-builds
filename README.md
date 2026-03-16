@@ -19,6 +19,7 @@ If you are looking for a specific custom build not available yet in this reposit
 
 ### Caddy Images:
 
+- [**caddy-bunny-ddns**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-bunny-ddns): includes Bunny Dynamic DNS module.
 - [**caddy-cloudflare**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare): includes Cloudflare DNS and IPs modules.
 - [**caddy-cloudflare-crowdsec**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec): includes Cloudflare DNS/IPs and CrowdSec Bouncer modules.
 - [**caddy-cloudflare-crowdsec-geoip-ratelimit-security**](https://github.com/serfriz/caddy-custom-builds/tree/main/caddy-cloudflare-crowdsec-geoip-ratelimit-security): includes Cloudflare DNS/IPs, CrowdSec Bouncer, GeoIP Filter, Rate Limit and Caddy Security modules.
@@ -64,6 +65,7 @@ If you are looking for a specific custom build not available yet in this reposit
 
 ### Modules:
 
+- [**Bunny DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Bunny DNS-01 ACME validation support | [caddy-dns/bunny](https://github.com/caddy-dns/bunny)
 - [**Cloudflare DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for Cloudflare DNS-01 ACME validation support | [caddy-dns/cloudflare](https://github.com/caddy-dns/cloudflare)
 - [**Cloudflare IPs**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#cloudflare-ips): to retrieve Cloudflare's current [IP ranges](https://www.cloudflare.com/ips/) | [WeidiDeng/caddy-cloudflare-ip](https://github.com/WeidiDeng/caddy-cloudflare-ip)
 - [**ClouDNS DNS**](https://github.com/serfriz/caddy-custom-builds?tab=readme-ov-file#dns-modules): for ClouDNS DNS-01 ACME validation support | [caddy-dns/cloudns](https://github.com/caddy-dns/cloudns)
