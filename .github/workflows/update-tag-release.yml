@@ -146,7 +146,7 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
 
       - name: Push release to github repository
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: v${{ needs.metadata.outputs.version }}
           body: |
